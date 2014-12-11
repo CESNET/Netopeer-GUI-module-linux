@@ -1,0 +1,13 @@
+{
+	"name": "cesnet/module-linux-bundle",
+	"type": "symfony-bundle",
+	"license": "GPL",
+	"autoload": {
+		"psr-4": {
+			"FIT\\Bundle\\ModuleLinuxBundle\\": ""
+		}
+	},
+	"require": {
+		"symfony/http-kernel": "~2.3"
+	}
+}
