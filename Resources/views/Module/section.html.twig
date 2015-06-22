@@ -43,39 +43,125 @@ if advised of the possibility of such damage.
 
 {% block state %}
 	{% block singleContent %}
-		{% if configSingleContent is defined %}
-
-			{{ configSingleContent|raw }}
-
-		{% else %}
-
-			<h1 class="left">{% if stateSectionTitle is defined %}{{ stateSectionTitle }}{% else %}Config &amp; State data{% endif %}</h1>
-			{% if stateArr is defined and not(stateArr is empty) %}
+		
+                        
+			<h1 class="left">System</h1>
+			
+                        {% if stateArr is defined and not(stateArr is empty) %}
 				<hr class="cleaner" />
-                                
-                                {% set iterator = 1 %}
-				{% for key, element in stateArr %}
-
-					{{ include( 'FITModuleLinuxBundle:Subsection:subsectionButton.html.twig' , {'name':stateArr.key, 'iterator':iterator} ) }}
-
-                                        {% set iterator = iterator + 1 %}
-				{% endfor %}
+                                <div id="subsection-buttons">
+                                    
+                                    {# Identificaton button#}
+                                    {% set counter = 0 %}
+                                    {% for key, element in stateArr %}
+                                        {% if stateArr.key == "contact" %}
+                                            {% set counter = 1 %}
+                                        {% endif %}
+                                        {% if stateArr.key == "hostname" %}
+                                            {% set counter = 1 %}
+                                        {% endif %}
+                                        {% if stateArr.key == "location" %}
+                                            {% set counter = 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if counter == 1 %}
+                                        <a href="{{ path( 'system_identification', {"key":app.request.get('key')} ) }}" id = "subsection-active">
+                                            System identification
+                                        </a>
+                                    {% endif %} 
+                                    {% if counter == 0 %}
+                                        <a href="{{ path( 'system_identification', {"key":app.request.get('key')} ) }}" onclick = "return false" id = "subsection-inactive">
+                                            System identification
+                                        </a>
+                                    {% endif %} 
+                                    
+                                    {# Time management button#}
+                                    {% set counter = 0 %}
+                                    {% for key, element in stateArr %}
+                                        {% if stateArr.key == "clock" %}
+                                            {% set counter = 1 %}
+                                        {% endif %}
+                                            {% if stateArr.key == "ntp" %}
+                                            {% set counter = 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if counter == 1 %}
+                                        <a href="{{ path( 'system_time_management', {"key":app.request.get('key')} ) }}" id = "subsection-active">
+                                            System time management
+                                        </a>
+                                    {% endif %} 
+                                    {% if counter == 0 %}
+                                        <a href="{{ path( 'system_time_management', {"key":app.request.get('key')} ) }}" onclick = "return false" id = "subsection-inactive">
+                                            System time management
+                                        </a>
+                                    {% endif %} 
+                                    
+                                    {# DNS resolver button#}
+                                    {% set counter = 0 %}
+                                    {% for key, element in stateArr %}
+                                        {% if stateArr.key == "dns-resolver" %}
+                                            {% set counter = 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if counter == 1 %}
+                                        <a href="{{ path( 'dns_resolver', {"key":app.request.get('key')} ) }}" id = "subsection-active">
+                                            DNS resolver
+                                        </a>
+                                    {% endif %} 
+                                    {% if counter == 0 %}
+                                        <a href="{{ path( 'dns_resolver', {"key":app.request.get('key')} ) }}" onclick = "return false" id = "subsection-inactive">
+                                            DNS resolver
+                                        </a>
+                                    {% endif %} 
+                                    
+                                    {# Radius button#}
+                                    {% set counter = 0 %}
+                                    {% for key, element in stateArr %}
+                                        {% if stateArr.key == "radius" %}
+                                            {% set counter = 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if counter == 1 %}
+                                        <a href="{{ path( 'radius_client', {"key":app.request.get('key')} ) }}" id = "subsection-active">
+                                            RADIUS Client
+                                        </a>
+                                    {% endif %} 
+                                    {% if counter == 0 %}
+                                        <a href="{{ path( 'radius_client', {"key":app.request.get('key')} ) }}" onclick = "return false" id = "subsection-inactive">
+                                            RADIUS Client
+                                        </a>
+                                    {% endif %} 
+                                    
+                                    {# User authentication button#}
+                                    {% set counter = 0 %}
+                                    {% for key, element in stateArr %}
+                                        {% if stateArr.key == "authentication" %}
+                                            {% set counter = 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if counter == 1 %}
+                                        <a href="{{ path( 'user_authentication', {"key":app.request.get('key')} ) }}" id = "subsection-active">
+                                            User authentication
+                                        </a>
+                                    {% endif %} 
+                                    {% if counter == 0 %}
+                                        <a href="{{ path( 'user_authentication', {"key":app.request.get('key')} ) }}" onclick = "return false" id = "subsection-inactive">
+                                            User authentication
+                                        </a>
+                                    {% endif %} 
+                                    
+                                    {# System control button#}
+                                    <a href="{{ path( 'system_control', {"key":app.request.get('key')} ) }}" id = "subsection-active">
+                                        System control
+                                    </a>
+                                    
+                                </div>
                                 
 				
 			{% endif %}
 
-		{% endif %}
+		
 	{% endblock singleContent %}
 {% endblock state %}
 
-{% block config %}
-	<h1 class="left">{% if configSectionTitle is defined %}{{ configSectionTitle }}{% else %}Config data only{% endif %}</h1>
-
-	{% if configArr is defined and not(configArr is empty) %}
-		<hr class="cleaner" />
-		<pre>
-			{{ configArr.asXml|trim }}
-		</pre>
-	{% endif %}
-{% endblock config %}
 

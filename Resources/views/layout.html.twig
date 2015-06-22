@@ -41,6 +41,7 @@ if advised of the possibility of such damage.
 {% block moduleJavascripts %}
 	{% javascripts
 	'@FITModuleLinuxBundle/Resources/public/js/*'
+        '@FITModuleLinuxBundle/Resources/public/js/subsections/clock.js'
 	output='js/compiled/module-linux.js'
 	%}
 	<script src="{{ asset_url }}"></script>
@@ -49,10 +50,18 @@ if advised of the possibility of such damage.
 
 {% block moduleStylesheet %}
 	{% stylesheets
-	'bundles/fitmodulexml/style/*'
+	'bundles/fitmodulelinux/style/*'
 	filter='cssrewrite'
 	output='css/module-linux.css'
 	%}
 	<link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
 {% endblock %}
+
+{% block topMenu %}
+{{parent()}}    
+{% endblock topMenu %}
+
+{% block obsah %}
+
+{% endblock obsah %}

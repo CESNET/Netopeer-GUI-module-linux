@@ -63,7 +63,230 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 			// data were prepared correctly
 		} else {
 			return $this->getTwigArr();
-		}
+               }
 	}
+        
+        
+        /**
+	 * @Route("/sections/{key}/system/identification/detail", name="system_identification")
+	 * @Template
+	 */
+	public function systemIdentificationAction($key, $module = "system", $subsection = "hostname") {
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+        /**
+	 * @Route("/sections/{key}/system/timemanagement/detail", name="system_time_management")
+	 * @Template
+	 */
+	public function systemTimeManagementAction($key, $module = "system", $subsection = "clock") {
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+        
+        /**
+	 * @Route("/sections/{key}/system/dns-resolver/detail", name="dns_resolver")
+	 * @Template
+	 */
+	public function dnsResolverAction($key, $module = "system", $subsection = "dns-resolver") {
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+        
+        /**
+	 * @Route("/sections/{key}/system/radius/detail", name="radius_client")
+	 * @Template
+	 */
+	public function radiusClientAction($key, $module = "system", $subsection = "radius") {
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+        
+        /**
+	 * @Route("/sections/{key}/system/authentication/detail", name="user_authentication")
+	 * @Template
+	 */
+	public function authenticationAction($key, $module = "system", $subsection = "authentication") {
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+        
+        /**
+	 * @Route("/sections/{key}/system/control/detail", name="system_control")
+	 * @Template
+	 */
+	public function systemControlAction($key, $module = "system", $subsection = "clock") {
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+ /*-------------------------------------------------------------------------------------------------------------------------------------------------*/       
+        /**
+	 * @Route("/sections/{key}/system/timemanagement/ntp/detail", name="system_ntp_detail")
+	 * @Template
+	 */
+	public function ntpDetailAction($key, $module = "system", $subsection = "ntp") {
+            
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+        
+        
+        /**
+	 * @Route("/sections/{key}/system/timemanagement/clock/detail", name="system_clock_detail")
+	 * @Template
+	 */
+	public function clockDetailAction($key, $module = "system", $subsection = "clock") {
+            
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+        
+        /**
+	 * @Route("/sections/{key}/system/hostname/detail", name="system_hostname_detail")
+	 * @Template
+	 */
+	public function hostnameDetailAction($key, $module = "system", $subsection = "hostname") {
+            
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+        /**
+	 * @Route("/sections/{key}/system/authentication/authentication/detail", name="system_authentication_detail")
+	 * @Template
+	 */
+	public function authenticationDetailAction($key, $module = "system", $subsection = "authentication") {
+            
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
+        
+        /**
+	 * @Route("/sections/{key}/system/dns-resolver/dns-resolver/detail", name="system_dns-resolver_detail")
+	 * @Template
+	 */
+	public function dnsresolverDetailAction($key, $module = "system", $subsection = "dns-resolver") {
+            
+            $res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, $module, $subsection);
+
+		/* parent module did not prepares data, but returns redirect response,
+		 * so we will follow this redirect
+		 */
+		if ($res instanceof RedirectResponse) {
+			return $res;
+
+			// data were prepared correctly
+		} else {
+			return $this->getTwigArr();
+               }
+        }
 
 }
