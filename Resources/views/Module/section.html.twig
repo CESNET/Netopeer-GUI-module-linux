@@ -52,9 +52,16 @@ if advised of the possibility of such damage.
 			<h1 class="left">{% if stateSectionTitle is defined %}{{ stateSectionTitle }}{% else %}Config &amp; State data{% endif %}</h1>
 			{% if stateArr is defined and not(stateArr is empty) %}
 				<hr class="cleaner" />
-				<pre>
-					{{ stateArr.asXml|trim }}
-				</pre>
+                                
+                                {% set iterator = 1 %}
+				{% for key, element in stateArr %}
+
+					{{ include( 'FITModuleLinuxBundle:Subsection:subsectionButton.html.twig' , {'name':stateArr.key, 'iterator':iterator} ) }}
+
+                                        {% set iterator = iterator + 1 %}
+				{% endfor %}
+                                
+				
 			{% endif %}
 
 		{% endif %}
