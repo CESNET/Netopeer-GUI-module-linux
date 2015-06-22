@@ -1,0 +1,39 @@
+{% extends 'FITModuleLinuxBundle::layout.html.twig' %}
+{% block title %}Section {% if sectionName is defined and not(sectionName is empty) %}- {{ sectionName }}{% endif %}{% endblock title %}
+
+{% set stateDefined = 'false' %}
+
+{% block state %}
+	{% block singleContent %}
+            <h2>NTPNTP</h2>
+		{% if configSingleContent is defined %}
+
+			{{ configSingleContent|raw }}
+
+		{% else %}
+                        
+			<h1 class="left">{% if stateSectionTitle is defined %}{{ stateSectionTitle }}{% else %}Config &amp; State data{% endif %}</h1>
+			{% if key is defined %}{{key}}{% endif %}
+                        {% if stateArr is defined and not(stateArr is empty) %}
+				<hr class="cleaner" />
+                                
+                                
+                                {{ stateArr.asXml|trim }}
+                                
+				
+			{% endif %}
+
+		{% endif %}
+	{% endblock singleContent %}
+{% endblock state %}
+
+{% block config %}
+	<h1 class="left">{% if configSectionTitle is defined %}{{ configSectionTitle }}{% else %}Config data only{% endif %}</h1>
+
+	{% if configArr is defined and not(configArr is empty) %}
+		<hr class="cleaner" />
+		<pre>
+			{{ configArr.asXml|trim }}
+		</pre>
+	{% endif %}
+{% endblock config %}
