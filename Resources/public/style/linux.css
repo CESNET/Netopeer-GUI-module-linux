@@ -1,0 +1,156 @@
+/*
+* @author David Alexa <alexa.david@me.com>
+*
+* Copyright (C) 2012-2013 CESNET
+*
+* LICENSE TERMS
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+* 1. Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+* 2. Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in
+*    the documentation and/or other materials provided with the
+*    distribution.
+* 3. Neither the name of the Company nor the names of its contributors
+*    may be used to endorse or promote products derived from this
+*    software without specific prior written permission.
+*
+* ALTERNATIVELY, provided that this notice is retained in full, this
+* product may be distributed under the terms of the GNU General Public
+* License (GPL) version 2 or later, in which case the provisions
+* of the GPL apply INSTEAD OF those given above.
+*
+* This software is provided ``as is'', and any express or implied
+* warranties, including, but not limited to, the implied warranties of
+* merchantability and fitness for a particular purpose are disclaimed.
+* In no event shall the company or contributors be liable for any
+* direct, indirect, incidental, special, exemplary, or consequential
+* damages (including, but not limited to, procurement of substitute
+* goods or services; loss of use, data, or profits; or business
+* interruption) however caused and on any theory of liability, whether
+* in contract, strict liability, or tort (including negligence or
+* otherwise) arising in any way out of the use of this software, even
+* if advised of the possibility of such damage.
+*/
+
+#block-linux-title {
+    
+}
+
+
+
+#block-linux-body > div {
+    display: block;
+}
+
+#block-linux-body #block-linux-body-title {
+    margin-bottom: 0px;
+}
+
+#block-linux-body #block-linux-body-title .linux-submenu {
+    padding-top: 30px;
+    border-bottom: 2px solid #004f80;
+    z-index: 100;
+    margin-bottom: 0px;
+}
+
+#block-linux-body #block-linux-body-title .linux-submenu .linux-submenu-link {
+    background: white;
+    text-decoration: none;
+    border: 1px solid #004f80;
+    padding: 8px 8px 0px 8px;
+    border-radius: 10%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0.5px;
+    font-size: 16px;
+}
+
+#block-linux-body #block-linux-body-title .linux-submenu .linux-submenu-link.linux-submenu-link-active {
+    font-weight: bold;
+    background: #F5F5F5;
+    border: 2px solid #004f80;
+    border-bottom: 0px;
+    padding: 10px 8px 2px 8px;
+    z-index: 105;
+}
+
+#block-linux-body #block-linux-body-content {
+    background: #F5F5F5;
+    padding-top: 5px;
+    padding-bottom: 30px;
+}
+
+#block-linux-body #block-linux-body-content form{
+    display: none;
+}
+
+#block-linux-body #block-linux-body-buttons {
+    border-top: 1px solid grey;
+    padding-top: 10px;
+    display: block;
+}
+
+#block-linux-body #block-linux-body-buttons button {
+    background-color: #004F80;
+    border-radius: 5px;
+    padding: 8px 20px;
+    color: #FFF;
+    font-size: 1em;
+    font-weight: normal;
+    border: 1px solid #003F67;
+    cursor: pointer;
+    box-shadow: 0px 0px 8px 0px #AAA;
+    margin: 15px 0px;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-align: left;
+    white-space: normal;
+    line-height: 1.3em;
+    font-family: Arial,Trebuchet,Verdana,sans-serif;
+}
+
+#block-linux-body #block-linux-body-buttons button:hover {
+    background-color: #002339;
+    border-color: #00101a;
+}
+
+#block-linux-debugging {
+    padding-top: 10px;
+    margin-top: 40px;
+    border-top: 1px solid grey;
+}
+
+
+
+#subsection-links {  
+    width: 100%; 
+    height: 100%; 
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+.subsection-link {
+    display: inline;
+    padding-right: 5px;
+}
+.subsection-link a {
+    color: white; 
+    padding: 1em; 
+    text-decoration: none; 
+    border-radius: 1px;
+}
+
+.subsection-active { 
+    background-color: #004f80;
+}
+
+.subsection-inactive {  
+    background-color: lightgrey; 
+}
+
+

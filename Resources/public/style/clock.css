@@ -1,0 +1,17 @@
+
+.timezones-map { 
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.timezone-map {
+    position: relative;
+    border: 1px solid grey;
+    margin-left: -4px;
+    height: 350px;
+    //float: left;
+}
+
+.active-zone { border: 2px solid red; }
+

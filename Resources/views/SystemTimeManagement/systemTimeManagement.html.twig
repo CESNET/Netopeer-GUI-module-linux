@@ -1,0 +1,44 @@
+{% extends 'FITModuleLinuxBundle::layoutSubsection.html.twig' %}
+
+{% block linuxBodyTitle %}
+
+    <h2>System time management</h2>
+    
+    <div class="linux-submenu">
+        <a href="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system", "subsection":"clock"} ) }}" class="{{ stateArr.clock is defined ? 'linux-submenu-link-active' : '' }} linux-submenu-link">
+            Clock
+        </a>
+        <a href="{{ path( 'system_time_management', {"key": app.request.get('key'), "module":"system", "subsection": "ntp"} ) }}" class="{{ stateArr.ntp is defined ? 'linux-submenu-link-active' : '' }} linux-submenu-link">
+            Ntp
+        </a>
+    </div>       
+                       
+{% endblock linuxBodyTitle %}
+
+{% block linuxBodyContent %} 
+          
+    {% if stateArr is defined and not(stateArr is empty) %}
+	<hr class="cleaner" />
+        
+        {% if stateArr.clock is defined %}
+            <div id="linux-body-content-clock">
+                {% if formConfigClock is defined %}
+                    {% include 'FITModuleLinuxBundle:SystemTimeManagement:clockDetail.html.twig' with {'clock': stateArr.clock, 'formConfigClock': formConfigClock} %}
+                {% elseif formNewNodeClock is defined %}
+                    {% include 'FITModuleLinuxBundle:SystemTimeManagement:clockDetail.html.twig' with {'clock': stateArr.clock, 'formNewNodeClock': formNewNodeClock} %}
+                {% endif %}
+            </div>
+        {% elseif stateArr.ntp is defined %}
+            <div id="linux-body-content-ntp">
+                {% include 'FITModuleLinuxBundle:SystemTimeManagement:ntpDetail.html.twig' with {'stateArr': stateArr, 'formConfigNtp': formConfigNtp} %}
+            </div>
+        {% endif %}     
+      
+    {% endif %}
+
+{% endblock linuxBodyContent %}
+
+{% block linuxBodyButtons %}
+    <button class="save-subsection system-time-management">Save</button>
+    <button class="back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "system"}) }}">Back</button>
+{% endblock linuxBodyButtons %}

@@ -36,11 +36,13 @@
 * if advised of the possibility of such damage.
 */
 
-#subsection-buttons { position: relative; width: 100%; height: 100%; border: 1px solid blue;}
 
-#subsection-buttons a {float:left; position:relative; top: 2%; left:2%; color: white; font-size: 100%; padding: 2em; margin: 1em; width: 50px; height: 50px; text-decoration: none; border-radius: 3px;}
 
-#subsection-active { background-color: #004f80; }
+#subsection-buttons { position: relative; width: 100%; height: 100%; border: 1px solid #bababa;}
+
+#subsection-buttons a {float:left; position:relative; top: 2%; left:2%; color: white; font-size: 100%; padding: 2em; margin: 1em; width: 50px; height: 50px; text-decoration: none; border-radius: 2px;}
+
+#subsection-active { background-color: #004f80;}
 #subsection-inactive {  background-color: lightgrey; }
 
 

@@ -47,7 +47,11 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 {
 	/**
 	 * @inheritdoc
-	 *
+         * 
+         * @Route("/sections/{key}/", name="section")
+	 * @Route("/sections/{key}/{module}/", name="module", requirements={"key" = "\d+"})
+	 * @Route("/sections/{key}/{module}/{subsection}/", name="subsection")
+         * 
 	 * @Template("FITModuleLinuxBundle:Module:section.html.twig")
 	 */
 	public function moduleAction($key, $module = null, $subsection = null)
@@ -63,7 +67,9 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 			// data were prepared correctly
 		} else {
 			return $this->getTwigArr();
-		}
+                }
+                // https://engiecloudtfs.visualstudio.com/
 	}
+        
 
 }

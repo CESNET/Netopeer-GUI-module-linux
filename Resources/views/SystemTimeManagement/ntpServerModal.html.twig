@@ -1,0 +1,20 @@
+{% extends 'FITModuleLinuxBundle::layoutModal.html.twig' %}
+
+{% block linuxModalHeader %}
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <span>Edit NTP Server</span>
+{% endblock linuxModalHeader %}
+
+{% block linuxModalBody %}
+    {% if formConfigNtpServer is defined and formConfigNtpServer is not null %}
+        <form action="{{path('get_server_form')}}" method="post" name="{{ formConfigNtpServer.formName }}" data-disable-history="true" class="form">
+            {% include 'FITModuleLinuxBundle:SystemTimeManagement:ntpServerForm.html.twig' with {'formConfigNtpServer': formConfigNtpServer} %}
+        </form>
+    {% endif %}
+{% endblock linuxModalBody %}
+
+{% block linuxModalFooter %}
+    <button class="submit">ok</button>
+{% endblock linuxModalFooter %}

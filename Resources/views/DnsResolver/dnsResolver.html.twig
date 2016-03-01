@@ -1,0 +1,25 @@
+{% extends 'FITModuleLinuxBundle::layoutSubsection.html.twig' %}
+
+{% block linuxBodyTitle %}
+
+    <h2>DNS Resolver</h2>
+                       
+{% endblock linuxBodyTitle %}
+
+{% block linuxBodyContent %} 
+          
+    {% if stateArr is defined and not(stateArr is empty) %}
+	<hr class="cleaner" /> 
+        
+        <div class = "xml">
+            {{ stateArr.asXml|trim }}
+        </div>  
+      
+    {% endif %}
+
+{% endblock linuxBodyContent %}
+
+{% block linuxBodyButtons %}
+    <button class="save-subsection dns-resolver">Save</button>
+    <button class="back-to-system-section">Back</button>
+{% endblock linuxBodyButtons %}

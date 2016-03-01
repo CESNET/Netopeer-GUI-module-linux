@@ -1,0 +1,36 @@
+<div class="system-time-management-ntp">
+    <h3>Config Ntp servers</h3>
+    
+    <div id="ntp-form">
+        {% if formConfigNtp is defined and formConfigNtp is not null %}
+            <form action="" method="post" name="{{ formConfigNtp.formName }}" data-disable-history="true" class="form">
+                <input type="hidden" class="checkbox value" name="{{ formConfigNtp.formName ~ "[" ~ formConfigNtp.enabledXpath ~ "]" }}" value="{{ formConfigNtp.enabledValue }}">
+                {% for server in formConfigNtp.servers %}
+                    <div class="server-subform {{ 'server-' ~ server.nameValue}}">
+                        {# server names are READ-ONLY #}
+                        {% include 'FITModuleLinuxBundle:SystemTimeManagement:ntpServerForm.html.twig' with {'formConfigNtpServer': server} %}
+                    </div>
+                {% endfor %}
+            </form>
+        {% endif %}
+    </div>
+    
+    <div class="ntp-config-img">
+        <h4>Enable synchronize the system clock with NTP server</h4>
+        <button id="enable-ntp">Enable</button>
+        <button id="disable-ntp">Disable</button>
+        
+        <h4>Servers</h4>
+        <div class="ntp-servers">
+            {% for server in formConfigNtp.servers %}
+                <div class="ntp-server existing-server {{ 'server-' ~ server.nameValue}}" data-path="{{path('get_server_modal_form')}}">
+                    {{server.nameValue}}
+                </div>
+            {% endfor %}
+            <div class="ntp-server new-server">
+                Add new server
+                {# Add new server #}
+            </div>
+        </div>
+    </div>
+</div>

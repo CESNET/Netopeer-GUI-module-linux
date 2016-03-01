@@ -41,6 +41,9 @@ if advised of the possibility of such damage.
 {% block moduleJavascripts %}
 	{% javascripts
 	'@FITModuleLinuxBundle/Resources/public/js/*'
+        '@FITModuleLinuxBundle/Resources/public/js/subsections/clock.js'
+        '@FITModuleLinuxBundle/Resources/public/js/subsections/ntp.js'
+        '@FITModuleLinuxBundle/Resources/public/js/subsections/subsectionCommon.js'
 	output='js/compiled/module-linux.js'
 	%}
 	<script src="{{ asset_url }}"></script>
@@ -49,10 +52,41 @@ if advised of the possibility of such damage.
 
 {% block moduleStylesheet %}
 	{% stylesheets
-	'bundles/fitmodulexml/style/*'
+	'bundles/fitmodulelinux/style/*'
 	filter='cssrewrite'
 	output='css/module-linux.css'
 	%}
 	<link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
 {% endblock %}
+
+{% block title %}Section {% if sectionName is defined and not(sectionName is empty) %}- {{ sectionName }}{% endif %}{% endblock title %}
+
+{% block topMenu %}
+    {{parent()}}    
+{% endblock topMenu %}
+
+{% block leftColumn %}
+    {{parent()}}  
+{% endblock leftColumn %}
+
+{% block state %}
+{% block singleContent %}
+    <div id="block-linux-body">
+        {% block linuxBody %}
+        {% endblock linuxBody %}
+    </div>
+    <div id="block-linux-debugging">
+        {% block linuxDebugging %}
+            <hr class="cleaner" />
+            {% if stateArr is defined and not(stateArr is empty) %}
+                <button class="toggle-main-xml">Show xml</button>
+                <div class="xml" style="display: none">
+                    {{ stateArr.asXml|trim }}
+                </div>
+            {% endif %}
+        {% endblock linuxDebugging %}
+    </div>
+{% endblock singleContent %}
+{% endblock state %}
+
