@@ -18,7 +18,7 @@
     
     <div class="timezones-map">
         {% for i in -11..13 %}
-            <img src="{{ asset('bundles/fitmodulelinux/images/t' ~ i ~ '.png' ) }}" alt="{{ 'timezone' ~ i }}"  class="timezone-map timezone-offset-{{ i != 13 ? i*60 : '-660'}}" data-offset="{{ i != 13 ? i*60 : '-660'}}"/>           
+            <img src="{{ asset('bundles/fitmodulelinux/images/t' ~ i ~ '.png' ) }}" alt="{{ 'timezone' ~ i }}"  class="timezone-map timezone-offset-{{ i != 13 ? i*60 : '-660'}}" data-offset="{{ i != 13 ? i*60 : '-660'}}"/> 
         {% endfor %}
     </div>
 </div>

@@ -126,16 +126,21 @@
 }
 
 
-
-#subsection-links {  
-    width: 100%; 
-    height: 100%; 
-    padding-top: 3em;
-    padding-bottom: 3em;
+/*
+#subsection-links nav li subsection-link-text {
+    display: block;
 }
 
+#subsection-links nav li subsection-link-icon {
+    display: block;
+}
+
+
+/*
+
+
 .subsection-link {
-    display: inline;
+    display: inline-block;
     padding-right: 5px;
 }
 .subsection-link a {
@@ -148,9 +153,24 @@
 .subsection-active { 
     background-color: #004f80;
 }
+/*
+ .subsection-active .subsection-link-icon {
+                display: block;
+
+            }
+
+
+.subsection-active .subsection-link-text {
+                display: block;
+
+            }
 
 .subsection-inactive {  
     background-color: lightgrey; 
 }
 
+.linux-navigation {
+    font-size: 10px;
+}
+*/
 

@@ -11,122 +11,57 @@
     {% if stateArr is defined and not(stateArr is empty) %}
         <hr class="cleaner" />
         <div id="subsection-links">
-            
-            <div class="subsection-link system-identification-link">
-                {# Identificaton button#}
-                {% set counter = 0 %}
-                {% for key, element in stateArr %}
-                    {% if stateArr.key == "contact" %}
-                        {% set counter = 1 %}
-                    {% endif %}
-                    {% if stateArr.key == "hostname" %}
-                        {% set counter = 1 %}
-                    {% endif %}
-                    {% if stateArr.key == "location" %}
-                        {% set counter = 1 %}
-                    {% endif %}
-                {% endfor %}
-                {% if counter == 1 %}
+          
+            <ul>
+                <li>
                     <a href="{{ path( 'system_identification', {"key":app.request.get('key')} ) }}" class = "subsection-active">
                         System identification
+                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_default.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
                     </a>
-                {% endif %} 
-                {% if counter == 0 %}
-                    <a href="{{ path( 'system_identification', {"key":app.request.get('key')} ) }}" onclick = "return false" class = "subsection-inactive">
-                        System identification
-                    </a>
-                {% endif %} 
-            </div>
-            
-            <div class="subsection-link system-time-management-link">
-                {# Time management button#}
-                {% set counter = 0 %}
-                {% for key, element in stateArr %}
-                    {% if stateArr.key == "clock" %}
-                        {% set counter = 1 %}
-                    {% endif %}
-                    {% if stateArr.key == "ntp" %}
-                        {% set counter = 1 %}
-                    {% endif %}
-                {% endfor %}
-                {% if counter == 1 %}
+                </li>
+
+                <li>
                     <a href="{{ path( 'system_time_management', {"key":app.request.get('key'), "module": "system", "subsection": "clock"} ) }}" class = "subsection-active">
                         System time management
+                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_time.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/> 
                     </a>
-                {% endif %} 
-                {% if counter == 0 %}
-                    <a href="{{ path( 'system_time_management', {"key":app.request.get('key')} ) }}" onclick = "return false" class = "subsection-inactive">
-                        System time management
-                    </a>
-                {% endif %} 
-            </div>
-            
-            <div class="subsection-link dns-resolver-link">
-                {# DNS resolver button#}
-                {% set counter = 0 %}
-                {% for key, element in stateArr %}
-                    {% if stateArr.key == "dns-resolver" %}
-                        {% set counter = 1 %}
-                    {% endif %}
-                {% endfor %}
-                {% if counter == 1 %}
+                </li>
+                
+                <li>
                     <a href="{{ path( 'dns_resolver', {"key":app.request.get('key'), "module": "system", "subsection": "dns-resolver"} ) }}" class = "subsection-active">
                         DNS resolver
+                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_dns.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
                     </a>
-                {% endif %} 
-                {% if counter == 0 %}
-                    <a href="{{ path( 'dns_resolver', {"key":app.request.get('key')} ) }}" onclick = "return false" class = "subsection-inactive">
-                        DNS resolver
-                    </a>
-                {% endif %} 
-            </div>
-            
-            <div class="subsection-link radius-client-link">
-                {# Radius button#}
-                {% set counter = 0 %}
-                {% for key, element in stateArr %}
-                    {% if stateArr.key == "radius" %}
-                        {% set counter = 1 %}
-                    {% endif %}
-                {% endfor %}
-                {% if counter == 1 %}
+                </li>
+                
+                <li>
                     <a href="{{ path( 'radius_client', {"key":app.request.get('key')} ) }}" class = "subsection-active">
                         RADIUS Client
+                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_default.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
                     </a>
-                {% endif %} 
-                {% if counter == 0 %}
-                    <a href="{{ path( 'radius_client', {"key":app.request.get('key')} ) }}" onclick = "return false" class = "subsection-inactive">
-                        RADIUS Client
-                    </a>
-                {% endif %} 
-            </div>
-            
-            <div class="subsection-link user-authentication-link">
-                {# User authentication button#}
-                {% set counter = 0 %}
-                {% for key, element in stateArr %}
-                    {% if stateArr.key == "authentication" %}
-                        {% set counter = 1 %}
-                    {% endif %}
-                {% endfor %}
-                {% if counter == 1 %}
+                </li>
+                
+                <li>
                     <a href="{{ path( 'user_authentication', {"key":app.request.get('key')} ) }}" class = "subsection-active">
                         User authentication
+                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_default.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
                     </a>
-                {% endif %} 
-                {% if counter == 0 %}
-                    <a href="{{ path( 'user_authentication', {"key":app.request.get('key')} ) }}" onclick = "return false" class = "subsection-inactive">
-                        User authentication
+                </li>
+                
+                <li>
+                    <a href="{{ path( 'system_control', {"key":app.request.get('key')} ) }}" class = "subsection-active">
+                        System control
+                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_default.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
                     </a>
-                {% endif %} 
-            </div>
-            
-            <div class="subsection-link system-control-link">
-                {# System control button#}
-                <a href="{{ path( 'system_control', {"key":app.request.get('key')} ) }}" class = "subsection-active">
-                    System control
-                </a>
-            </div>
+                </li>
+                
+                <li>
+                    <a href="#" class = "subsection-inactive">
+                        Settings
+                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_settings.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
+                    </a>
+                </li>
+            </ul>
 
         </div>
 
