@@ -300,9 +300,8 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 	 * @param $simpleXmlNew
 	 * @param $deep
 	 * @param $xpath
-	 * @param $parentElement
      */
-	private function addNodesToDelete($simpleXmlOriginal, $simpleXmlNew, $deep = 0, $xpath = null, $parentElement = null)
+	private function addNodesToDelete($simpleXmlOriginal, $simpleXmlNew, $deep = 0, $xpath = null)
 	{
 		if (!isset($xpath)) {
 			$xpath='/xmlns:'.$simpleXmlOriginal->getName();
@@ -321,25 +320,59 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 			}
 
 			if ($deep < 1) {
-				$childXpath = $xpath . '/xmlns:' . $name . '[' . $position[$name] . ']';
+				$childXpath = $xpath . '/xmlns:' . $name;
 			} else {
-				$childXpath = $xpath . '/' . $name . '[' . $position[$name] . ']';
+				$childXpath = $xpath . '/' . $name;
 			}
 
 			if ($simpleXmlNew->xpath($childXpath) == null) {
-				if (!isset($parentElement)) {
-					$parentElement = $simpleXmlNew->xpath($xpath);
-				}
+				$parentElement = $simpleXmlNew->xpath($xpath);
+
 				if (isset($parentElement) && is_array($parentElement) && array_key_exists(0, $parentElement)) {
 					$parentElement = $parentElement[0];
 				}
 
 				$childElement = $parentElement->addChild($name, (string)$child);
 				$childElement->addAttribute("xc:operation", "remove", "urn:ietf:params:xml:ns:netconf:base:1.0");
+
+				$this->addNodesToRemoveUnderRemovedParent($child, $childElement);
+
+			} else if (($deep >= 0) && is_array($arrayElements = $simpleXmlNew->xpath($childXpath))) {
+				$keyExistsInArray = false;
+				foreach ($arrayElements as $arrayElement) {
+					if ((string)$arrayElement == (string)$child) {
+						$keyExistsInArray = true;
+					}
+				}
+
+				if (!$keyExistsInArray) {
+					$parentElement = $simpleXmlNew->xpath($xpath);
+					if (isset($parentElement) && is_array($parentElement) && array_key_exists(0, $parentElement)) {
+						$parentElement = $parentElement[0];
+					}
+
+					$childElement = $parentElement->addChild($name, (string)$child);
+					$childElement->addAttribute("xc:operation", "remove", "urn:ietf:params:xml:ns:netconf:base:1.0");
+
+					$this->addAllNodesToRemoveUnderRemovedParent($child, $childElement);
+				}
 			}
 
 			$deep++;
-			$this->addNodesToDelete($child, $simpleXmlNew, $deep, $childXpath, isset($childElement) ? $childElement : null);
+			$this->addNodesToDelete($child, $simpleXmlNew, $deep, $childXpath);
+		}
+	}
+
+	/**
+	 * @param $simpleXmlOriginal
+	 * @param $parentElement
+     */
+	private function addAllNodesToRemoveUnderRemovedParent($simpleXmlOriginal, $parentElement) {
+		foreach($simpleXmlOriginal->children() as $child) {
+			$name = $child->getName();
+			$childElement = $parentElement->addChild($name, (string)$child);
+			$childElement->addAttribute("xc:operation", "remove", "urn:ietf:params:xml:ns:netconf:base:1.0");
+			$this->addAllNodesToRemoveUnderRemovedParent($child, $childElement);
 		}
 	}
 
