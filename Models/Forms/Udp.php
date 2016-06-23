@@ -28,7 +28,7 @@ class Udp
     {
         return $this->port;
     }
-    
+
     public function setPort($port)
     {
         $this->port = $port;

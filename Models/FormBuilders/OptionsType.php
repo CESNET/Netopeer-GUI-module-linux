@@ -20,17 +20,20 @@ class OptionsType extends AbstractType
     {
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($builder)
         {
-            $data = $event->getData();
             $form = $event->getForm();
 
             $form
-                ->add('timeout', 'text', array(
+                ->add('timeout', 'integer', array(
                     'label' => "Timeout",
                     'required' => false,
+                    'error_bubbling' => true,
+                    'invalid_message' => 'Timeout must be number'
                 ))
-                ->add('attempts', 'text', array(
+                ->add('attempts', 'integer', array(
                     'label' => "Attempts",
                     'required' => false,
+                    'error_bubbling' => true,
+                    'invalid_message' => 'Attempts must be number'
                 ));
         });
     }

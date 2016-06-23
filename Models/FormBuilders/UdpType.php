@@ -22,7 +22,7 @@ class UdpType extends AbstractType
                     'required' => true,
                     'error_bubbling' => true,
                 ))
-                ->add('port', 'text', array(
+                ->add('port', 'integer', array(
                     'label' => "Port",
                     'required' => false,
                     'read_only' => array_key_exists('features', $options) && $options['features'] != null && (array_search('ntp-udp-port', $options['features']) === false),

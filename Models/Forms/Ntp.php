@@ -37,7 +37,7 @@ class Ntp extends ConfigForm
 
     public static function createFromXml($ntpXml)
     {
-        $ntp = new static ();
+        $ntp = new static();
 
         $ntp->setEnabled(Ntp::getNodeValue($ntpXml->enabled, false));
         $index = 1;

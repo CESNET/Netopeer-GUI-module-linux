@@ -38,15 +38,23 @@ class NtpServerType extends AbstractType
                     'required' => false,
                     'error_bubbling' => true,
                 ))
-                ->add('iburst', 'text', array(
+                ->add('iburst', 'choice', array(
                     'label' => "IBurst",
                     'required' => false,
                     'error_bubbling' => true,
+                    'choices' => array(
+                        'true' => 'true',
+                        'false' => 'false',
+                    ),
                 ))
-                ->add('prefer', 'text', array(
+                ->add('prefer', 'choice', array(
                     'label' => "Prefer",
                     'required' => false,
                     'error_bubbling' => true,
+                    'choices' => array(
+                        'true' => 'true',
+                        'false' => 'false',
+                    ),
                 ));
         });
     }

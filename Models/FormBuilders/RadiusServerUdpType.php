@@ -20,35 +20,25 @@ class RadiusServerUdpType extends AbstractType
     {
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($builder, $options)
         {
-            $data = $event->getData();
             $form = $event->getForm();
-            // $event->attr
 
             $form
                 ->add('address', 'text', array(
                     'label' => "Address",
                     'required' => true,
                     'error_bubbling' => true,
-                    'attr' => array(
-                        // 'name' => "configDataForm[".$data->timeoutXpath."]",
-                    )
                 ))
-                ->add('authenticationPort', 'text', array(
+                ->add('authenticationPort', 'integer', array(
                     'label' => "Port",
                     'required' => false,
-                      'error_bubbling' => true,
-                  //  'read_only' => array_key_exists('features', $options) && $options['features'] != null && (array_search('ntp-udp-port', $options['features']) === false),
+                    'error_bubbling' => true,
                     'attr' => array(
-                        //  'name' => "configDataForm[".$data->portXpath."]",
                     )
                 ))
                 ->add('sharedSecret', 'text', array(
                     'label' => "Shared secret",
                     'required' => true,
                     'error_bubbling' => true,
-                    'attr' => array(
-                        // 'name' => "configDataForm[".$data->timeoutXpath."]",
-                    )
                 ));
         });
     }
