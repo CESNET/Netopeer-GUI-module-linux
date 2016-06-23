@@ -1,0 +1,81 @@
+{% extends 'FITModuleLinuxBundle::layoutSubsection.html.twig' %}
+
+{% block linuxBodyTitle %}
+
+    <h1>Authentication</h1>
+    <div class="linux-navigation">
+        <a href="{{ path( 'module', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+            System
+        </a>
+        >>
+        <a href="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+            Authentication
+        </a>
+        {% if formConfigAuthentication is defined %}
+            >>
+            <a href="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system", "subsection":"authentication"} ) }}" class="linux-navigation-link">
+                User authentication
+            </a>
+        {% elseif formConfigRadius is defined %}
+            >>
+            <a href="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system", "subsection":"radius"} ) }}" class="linux-navigation-link">
+                Radius
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="linux-submenu">
+        <a href="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system", "subsection":"authentication"} ) }}" class="{{ formConfigAuthentication is defined ? 'linux-submenu-link-active' : '' }} linux-submenu-link">
+            User authentication
+        </a>
+        <a href="{{ path( 'authentication', {"key": app.request.get('key'), "module":"system", "subsection": "radius"} ) }}" class="{{ formConfigRadius is defined ? 'linux-submenu-link-active' : '' }} linux-submenu-link">
+            Radius
+        </a>
+    </div>
+
+{% endblock linuxBodyTitle %}
+
+{% block linuxBodyContent %}
+
+    <hr class="cleaner" />
+
+    <table id="subsection-content">
+        <tr>
+            {% if formConfigAuthentication is defined %}
+                <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'dns_resolver', {"key":app.request.get('key'), "module":"system", "subsection":"dns-resolver"} ) }}">
+                    <div class="arrow-navigation-text">Previous</div>
+                    <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+                    <div class="arrow-navigation-text">Dns resolver</div>
+                </td>
+                <td id="linux-body-content-authentication" class="content">
+                    {% include 'FITModuleLinuxBundle:Authentication:authenticationDetail.html.twig' with {'featureAuthentication': featureAuthentication, 'featureLocalUsers': featureLocalUsers, 'formConfigAuthentication': formConfigAuthentication} %}
+                </td>
+                <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system", "subsection":"radius"} ) }}">
+                    <div class="arrow-navigation-text">Next</div>
+                    <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
+                    <div class="arrow-navigation-text">Radius</div>
+                </td>
+            {% elseif formConfigRadius is defined %}
+                <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system", "subsection":"authentication"} ) }}">
+                    <div class="arrow-navigation-text">Previous</div>
+                    <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+                    <div class="arrow-navigation-text">User authentication</div>
+                </td>
+                <td id="linux-body-content-radius" class="content">
+                    {% include 'FITModuleLinuxBundle:Authentication:radiusDetail.html.twig' with {'featureRadius': featureRadius, 'formConfigRadius': formConfigRadius} %}
+                </td>
+                <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'interface_management', {"key":app.request.get('key'), "module":"interfaces", "subsection":""} ) }}">
+                    <div class="arrow-navigation-text">Next</div>
+                    <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
+                    <div class="arrow-navigation-text">Interfaces management</div>
+                </td>
+            {% endif %}
+        </tr>
+    </table>
+
+{% endblock linuxBodyContent %}
+
+{% block linuxBodyButtons %}
+    <button class="btn btn-success save-subsection authentication">Save</button>
+    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "system"}) }}">Back</button>
+{% endblock linuxBodyButtons %}

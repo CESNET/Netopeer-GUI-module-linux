@@ -1,0 +1,54 @@
+{% extends 'FITModuleLinuxBundle::layoutSubsection.html.twig' %}
+
+{% block linuxBodyTitle %}
+
+    <h1>Interfaces management</h1>
+    <div class="linux-navigation">
+        <a href="{{ path( 'module', {"key":app.request.get('key'), "module":"interfaces"} ) }}" class="linux-navigation-link">
+            Interfaces
+        </a>
+        >>
+        <a href="{{ path( 'interface_management', {"key":app.request.get('key'), "module":"interfaces"} ) }}" class="linux-navigation-link">
+            Interfaces management
+        </a>
+    </div>
+
+    <div class="linux-submenu">
+        <a href="{{ path( 'interface_management', {"key":app.request.get('key'), "module":"interfaces",} ) }}" class="linux-submenu-link-active linux-submenu-link">
+            Interfaces
+        </a>
+    </div>
+
+{% endblock linuxBodyTitle %}
+
+{% block linuxBodyContent %}
+
+    <hr class="cleaner" />
+    <table id="subsection-content">
+        <tr>
+            <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system", "subsection":"radius"} ) }}">
+                <div class="arrow-navigation-text">Previous</div>
+                <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+                <div class="arrow-navigation-text">Radius</div>
+            </td>
+            <td id="linux-body-content-interface" class="content">
+                {% if formConfigInterfaces is defined %}
+                    {% include 'FITModuleLinuxBundle:InterfaceManagement:interfaceDetail.html.twig' with {'formConfigInterfaces': formConfigInterfaces} %}
+                {% endif %}
+            </td>
+            <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'system_identification', {"key":app.request.get('key'), "module":"system"} ) }}">
+                <div class="arrow-navigation-text">Next</div>
+                <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
+                <div class="arrow-navigation-text">System identification</div>
+            </td>
+
+        </tr>
+    </table>
+
+{% endblock linuxBodyContent %}
+
+{% block linuxBodyButtons %}
+
+    <button class="btn btn-success save-subsection interfaces-management">Save</button>
+    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "interfaces"}) }}">Back</button>
+{% endblock linuxBodyButtons %}

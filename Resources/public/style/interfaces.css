@@ -1,0 +1,43 @@
+.interfaces-interfaces div.interfaces-interface {
+    display: inline-block;
+    width: 90px;
+    padding: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.interfaces-interfaces div.interfaces-interface > * {
+    display: block;
+    margin: 0 auto;
+}
+
+.interfaces-interfaces div.link-active {
+    background-color: #004F80;
+    color: white;
+}
+
+.interfaces-interfaces div.link-inactive {
+    background-color: lightgrey;
+}
+
+.interfaces-interfaces div.link-active:hover {
+    cursor: pointer;
+    background-color:  #002034;
+}
+
+.interfaces-interfaces div.link-inactive:hover {
+    cursor: default;
+}
+
+.interfaces-interfaces div.interfaces-interface .interface-name {
+    padding-bottom: 5px;
+}
+
+.interfaces-interfaces div.interfaces-interface .fa-wifi, .interfaces-interfaces div.interfaces-interface .fa-plus-circle{
+    color: #de9a71;
+}

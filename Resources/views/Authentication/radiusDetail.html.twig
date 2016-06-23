@@ -1,0 +1,46 @@
+<div class="authentication-radius">
+    <h2>Radius configuration</h2>
+
+    {% if featureRadius == false %}
+        <div class="warning-text">System hasn't radius feature</div>
+    {% else %}
+        <div id="radius-form">
+            {% if formConfigRadius is defined and formConfigRadius is not null %}
+                {% form_theme formConfigRadius 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+                {{ form_start(formConfigRadius) }}
+                <div class="form-errors">
+                    {{ form_errors(formConfigRadius) }}
+                </div>
+                <div class="configuration-block">
+                    <h3>Radius options</h3>
+                    {{ form_row(formConfigRadius.options.timeout) }}
+                    {{ form_row(formConfigRadius.options.attempts) }}
+                </div>
+                <div class="hidden-form">
+                    {% include 'FITModuleLinuxBundle:Authentication:radiusServerForm.html.twig' with {'formConfigRadius': formConfigRadius} %}
+                </div>
+                {{ form_end(formConfigRadius, {'render_rest': false}) }}
+            {% endif %}
+        </div>
+
+        <div class="radius-config-img">
+            <div class="configuration-block">
+                <h3>Servers</h3>
+                <div class="radius-servers">
+                    {% for server in formConfigRadius.server %}
+                        <div class="radius-server existing-server {{ 'server-' ~ server.vars.value.name}} link-active" data-path="{{path('get_radius_server_modal_form')}}">
+                            <span class='server-name'>{{server.vars.value.name}}</span>
+                            <br>
+                            <i class="fa fa-server fa-3x" aria-hidden="true"></i>
+                        </div>
+                    {% endfor %}
+                    <div class="radius-server new-server link-active" data-path="{{path('get_radius_server_modal_form')}}">
+                        <span class='server-name'>New server</span>
+                        <br>
+                        <i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

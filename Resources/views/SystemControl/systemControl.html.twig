@@ -1,1 +1,40 @@
-{% extends 'FITModuleLinuxBundle::layout.html.twig' %}
+{% extends 'FITModuleLinuxBundle::layoutSubsection.html.twig' %}
+
+{% block linuxBodyTitle %}
+
+    <h1>System Control</h1>
+    <div class="linux-navigation">
+        <a href="{{ path( 'module', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+            System
+        </a>
+        >>
+        <a href="{{ path( 'system_control', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+            System control
+        </a>
+    </div>
+
+    <div class="linux-submenu">
+    </div>
+
+{% endblock linuxBodyTitle %}
+
+{% block linuxBodyContent %}
+
+    <div id="module-control">
+        <h2>RPC methods</h2>
+        <div class="configuration-subblock">
+            {% if rpcMethods is defined %}
+                <div class="nav-left">
+                    {% for rpc in rpcMethods %}
+                        <a href="{{ path('showRPCForm', {'key': app.request.get('key'), 'module': app.request.get('module'), 'rpcName': rpc.name}) }}" class="item has-bullet ajaxLink" data-disable-history="true" data-do-not-activate="true"><span class="bullet"></span>{{ rpc.name }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock linuxBodyContent %}
+
+{% block linuxBodyButtons %}
+    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "system"}) }}">Back</button>
+{% endblock linuxBodyButtons %}

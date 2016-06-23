@@ -1,0 +1,62 @@
+<div class="authentication-user-authentication">
+    <h2>User authentication configuration</h2>
+
+    {% if featureAuthentication == false %}
+        <div class="warning-text">System hasn't authentication feature</div>
+    {% else %}
+        <div id="authentication-form">
+            {% if formConfigAuthentication is defined and formConfigAuthentication is not null %}
+                {% form_theme formConfigAuthentication 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+                {{ form_start(formConfigAuthentication) }}
+                <div class="form-errors">
+                    {{ form_errors(formConfigAuthentication) }}
+                </div>
+                <div class="configuration-block">
+                    <h3>Authentication Order</h3>
+                    <div class="input-group">
+                        <div class="input-label">
+                            <label>Order</label>
+                        </div>
+                        <div class="input-content">
+                            {% for order in formConfigAuthentication.userAuthenticationOrder %}
+                                <div class="removable-item">
+                                    {{ form_widget(order.userAuthenticationOrder, {'attr': {'data-path-remove': path('remove_item_form', {"key": app.request.get('key'), "module":"system", "subsection":"authentication"})}}) }}
+                                    <i class="fa fa-remove remove-select" aria-hidden="true"></i>
+                                </div>
+                            {% endfor %}
+                            <i class="fa fa-plus add-select" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden-form">
+                    {% include 'FITModuleLinuxBundle:Authentication:authenticationUserForm.html.twig' with {'formConfigAuthentication': formConfigAuthentication} %}
+                </div>
+                {{ form_end(formConfigAuthentication, {'render_rest': false}) }}
+            {% endif %}
+        </div>
+
+        <div class="authentication-config-img">
+            <div class="configuration-block">
+                <h3>Users</h3>
+                {% if featureLocalUsers == false %}
+                    <div class="warning-text">System hasn't local-users feature</div>
+                {% else %}
+                    <div class="users">
+                        {% for user in formConfigAuthentication.user %}
+                            <div class="user existing-user {{ 'user-' ~ user.vars.value.name}} link-active" data-path="{{path('get_user_modal_form')}}">
+                                <span class='user-name'>{{user.vars.value.name}}</span>
+                                <br>
+                                <i class="fa fa-user fa-3x" aria-hidden="true"></i>
+                            </div>
+                        {% endfor %}
+                        <div class="user new-user link-active" data-path="{{path('get_user_modal_form')}}">
+                            <span class='user-name'>New user</span>
+                            <br>
+                            <i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+</div>

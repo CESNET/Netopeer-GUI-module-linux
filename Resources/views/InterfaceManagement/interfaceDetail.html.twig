@@ -1,0 +1,37 @@
+<div class="interface">
+    <h2>Interfaces configuration</h2>
+
+    <div id="interface-form">
+        {% if formConfigInterfaces is defined and formConfigInterfaces is not null %}
+            {% form_theme formConfigInterfaces 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+            {{ form_start(formConfigInterfaces) }}
+            <div class="form-errors">
+                {{ form_errors(formConfigInterfaces) }}
+            </div>
+            <span class="hidden-form">
+                {% include 'FITModuleLinuxBundle:InterfaceManagement:interfaceForm.html.twig' with {'formConfigInterfaces': formConfigInterfaces} %}
+            </span>
+            {{ form_end(formConfigInterfaces, {'render_rest': false}) }}
+        {% endif %}
+    </div>
+
+    <div class="interfaces-config-img">
+        <div class="configuration-block">
+            <h3>Interfaces</h3>
+            <div class="interfaces-interfaces">
+                {% for interface in formConfigInterfaces.interface %}
+                    <div class="interfaces-interface existing-interface {{ 'interface-' ~ interface.vars.value.name}} link-active" data-path="{{path('get_interface_modal_form')}}">
+                        <span class='interface-name'>{{interface.vars.value.name}}</span>
+                        <br>
+                        <i class="fa fa-wifi fa-3x" aria-hidden="true"></i>
+                    </div>
+                {% endfor %}
+                <div class="interfaces-interface new-interface link-active" data-path="{{path('get_interface_modal_form')}}">
+                    <span class='interface-name'>New interface</span>
+                    <br>
+                    <i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

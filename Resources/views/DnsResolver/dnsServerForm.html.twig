@@ -1,0 +1,8 @@
+{% form_theme formConfigDnsResolver 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+{% for server in formConfigDnsResolver.server %}
+    <div class="server-subform {{ 'server-' ~ server.vars.value.name}}">
+        {{ form_row(server.name) }}
+        {{ form_row(server.udpAndTcp.address) }}
+        {{ form_row(server.udpAndTcp.port) }}
+    </div>
+{% endfor %}

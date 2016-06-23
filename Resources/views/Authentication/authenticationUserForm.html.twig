@@ -1,0 +1,21 @@
+{% form_theme formConfigAuthentication 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+{% for user in formConfigAuthentication.user %}
+    <div class="user-subform {{ 'user-' ~ user.vars.value.name}}">
+        {{ form_row(user.name) }}
+        {{ form_row(user.password) }}
+
+        {# TODO: #}
+        {# <div class="subform-list authorized-key">
+            {% for authorizedKey in formConfigAuthenticationUser.authorizedKey %}
+                {{ form_row(authorizedKey.keyNameValue) }}
+                {{ form_row(authorizedKey.keyNameXpath) }}
+
+                {{ form_row(authorizedKey.algorithmValue) }}
+                {{ form_row(authorizedKey.algorithmXpath) }}
+
+                {{ form_row(authorizedKey.keyDataValue) }}
+                {{ form_row(authorizedKey.keyDataXpath) }}
+            {% endfor %}
+        </div> #}
+    </div>
+{% endfor %}

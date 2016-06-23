@@ -1,7 +1,11 @@
-{% if formConfigNtpServer is defined and formConfigNtpServer is not null %}
-    <input type="text" class="text value" name="{{ formConfigNtpServer.formName ~ "[" ~ formConfigNtpServer.nameXpath ~ "]" }}" value="{{ formConfigNtpServer.nameValue }}" readonly>
-    <input type="hidden" class="text hidden-value" name="{{ formConfigNtpServer.formName ~ "[nameXpath]"}}" value="{{ formConfigNtpServer.nameXpath }}">
-    <input type="text" class="text value" name="{{ formConfigNtpServer.formName ~ "[" ~ formConfigNtpServer.addressXpath ~ "]" }}" value="{{ formConfigNtpServer.addressValue }}">
-    <input type="hidden" class="text hidden-value" name="{{ formConfigNtpServer.formName ~ "[addressXpath]"}}" value="{{ formConfigNtpServer.addressXpath }}">
-{% endif %}
+{% for server in formConfigNtp.server %}
+    <div class="server-subform {{ 'server-' ~ server.vars.value.name}}">
+        {{ form_row(server.name) }}
+        {{ form_row(server.udp.address) }}
+        {{ form_row(server.udp.port) }}
+        {{ form_row(server.associationType) }}
+        {{ form_row(server.iburst) }}
+        {{ form_row(server.prefer) }}
+    </div>
+{% endfor %}
 

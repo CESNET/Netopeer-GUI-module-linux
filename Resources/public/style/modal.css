@@ -1,0 +1,103 @@
+.modal-header {
+    background-color: lightblue;
+    text-align: center;
+    padding: 10px;
+}
+
+.modal-header .modal-title {
+    font-weight: bold;
+    font-size: 110%;
+}
+
+.modal-header .modal-close {
+    font-size: 150%;
+    font-weight: bold;
+    border: 0px;
+    background-color: lightblue;
+    float: right;
+}
+
+.modal-header .modal-close:hover {
+    cursor: pointer;
+}
+
+.modal-body form .form-errors {
+    padding-left: 20px;
+    color: red;
+}
+
+.modal-body form .form-errors ul li {
+    list-style: circle;
+}
+
+.modal-body .input-group > div {
+    display: inline;
+}
+
+.modal-body .input-group .input-label label {
+    width: 180px;
+}
+
+/* Taken from original styles - NetopeerBundle screen.css*/
+.modal-body .input-group select, .modal-body .input-group input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 5px;
+    border: 1px solid #999;
+    background: #fff;
+    margin-top: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    *zoom: 1;
+    *display: inline;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+.modal-body .input-group.required label {
+    font-weight: bold;
+}
+
+.modal-body .input-group.readonly input {
+    background-color: #e3e3e3;
+}
+
+.modal-footer {
+    background-color: #ccc;
+}
+
+.modal-footer button {
+    border-radius: 5px;
+    padding: 4px 10px;
+    color: #FFF;
+    font-size: 1em;
+    font-weight: normal;
+    border: 1px solid grey;
+    cursor: pointer;
+    box-shadow: 0px 0px 8px 0px #AAA;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-align: left;
+    white-space: normal;
+    font-family: Arial,Trebuchet,Verdana,sans-serif;
+}
+
+.modal-footer .modal-submit {
+    cursor: pointer;
+}
+
+.modal-footer .close {
+    cursor: pointer;
+}
+
+.modal-footer .remove-item {
+    cursor: pointer;
+}

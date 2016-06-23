@@ -2,24 +2,51 @@
 
 {% block linuxBodyTitle %}
 
-    <h2>DNS Resolver</h2>
-                       
+    <h1>DNS resolver</h1>
+    <div class="linux-navigation">
+        <a href="{{ path( 'module', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+            System
+        </a>
+        >>
+        <a href="{{ path( 'dns_resolver', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+            DNS resolver
+        </a>
+    </div>
+
+    <div class="linux-submenu">
+        <a href="{{ path( 'dns_resolver', {"key":app.request.get('key'), "module":"system", "subsection":"dns-resolver"} ) }}" class="linux-submenu-link-active linux-submenu-link">
+            DNS resolver
+        </a>
+    </div>
+
 {% endblock linuxBodyTitle %}
 
-{% block linuxBodyContent %} 
-          
-    {% if stateArr is defined and not(stateArr is empty) %}
-	<hr class="cleaner" /> 
-        
-        <div class = "xml">
-            {{ stateArr.asXml|trim }}
-        </div>  
-      
-    {% endif %}
+{% block linuxBodyContent %}
+
+<hr class="cleaner" />
+<table id="subsection-content">
+    <tr>
+        <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system", "subsection":"ntp"} ) }}">
+            <div class="arrow-navigation-text">Previous</div>
+            <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+            <div class="arrow-navigation-text">Ntp</div>
+        </td>
+        <td id="linux-body-content-dns-resolver" class="content">
+            {% if formConfigDnsResolver is defined %}
+                {% include 'FITModuleLinuxBundle:DnsResolver:dnsDetail.html.twig' with {'stateArrIsDefined': stateArr is defined, 'formConfigDnsResolver': formConfigDnsResolver} %}
+            {% endif %}
+        </td>
+        <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system", "subsection":"authentication"} ) }}">
+            <div class="arrow-navigation-text">Next</div>
+            <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
+            <div class="arrow-navigation-text">User authentication</div>
+        </td>
+        </tr>
+    </table>
 
 {% endblock linuxBodyContent %}
 
 {% block linuxBodyButtons %}
-    <button class="save-subsection dns-resolver">Save</button>
-    <button class="back-to-system-section">Back</button>
+    <button class="btn btn-success save-subsection system-identification">Save</button>
+    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "system"}) }}">Back</button>
 {% endblock linuxBodyButtons %}

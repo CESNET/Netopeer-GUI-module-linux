@@ -1,0 +1,54 @@
+<div class="dns-resolver">
+    <h2>Dns Resolver configuration</h2>
+
+    <div id="dns-form">
+        {% if formConfigDnsResolver is defined and formConfigDnsResolver is not null %}
+            {% form_theme formConfigDnsResolver 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+            {{ form_start(formConfigDnsResolver) }}
+            <div class="form-errors">
+                {{ form_errors(formConfigDnsResolver) }}
+            </div>
+            <div class="configuration-block">
+                <h3>DNS options</h3>
+                <div class="input-group">
+                    <div class="input-label">
+                        <label>Search</label>
+                    </div>
+                    <div class="input-content">
+                        {% for search in formConfigDnsResolver.search %}
+                            <div class="removable-item">
+                                {{ form_widget(search.search, {'attr': {'data-path-remove': path('remove_item_form', {"key": app.request.get('key'), "module":"system", "subsection":"dns-resolver"})}}) }}
+                                <i class="fa fa-remove remove-input" aria-hidden="true"></i>
+                            </div>
+                        {% endfor %}
+                        <i class="fa fa-plus add-input" aria-hidden="true"></i>
+                    </div>
+                </div>
+                {{ form_row(formConfigDnsResolver.options.timeout) }}
+                {{ form_row(formConfigDnsResolver.options.attempts) }}
+                <div class="hidden-form">
+                    {% include 'FITModuleLinuxBundle:DnsResolver:dnsServerForm.html.twig' with {'formConfigDnsResolver': formConfigDnsResolver} %}
+                </div>
+            </div>{{ form_end(formConfigDnsResolver, {'render_rest': false}) }}
+        {% endif %}
+    </div>
+    <div class="dns-config-img">
+        <div class="configuration-block">
+            <h3>Servers</h3>
+            <div class="dns-servers">
+                {% for server in formConfigDnsResolver.server %}
+                    <div class="dns-server existing-server {{ 'server-' ~ server.vars.value.name}} link-active" data-path="{{path('get_dns_server_modal_form', {"key": app.request.get('key')})}}">
+                        <span class='server-name'>{{server.vars.value.name}}</span>
+                        <br>
+                        <i class="fa fa-server fa-3x" aria-hidden="true"></i>
+                    </div>
+                {% endfor %}
+                <div class="dns-server new-server link-active" data-path="{{path('get_dns_server_modal_form', {"key": app.request.get('key')})}}">
+                    <span class='server-name'>New server</span>
+                    <br>
+                    <i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

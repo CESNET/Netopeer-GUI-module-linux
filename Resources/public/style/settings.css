@@ -1,0 +1,31 @@
+#block-linux-body #block-linux-body-content .configuration-block #block--sourceValidation{
+    margin: 0;
+    padding: 0;
+}
+
+#block-linux-body #block-linux-body-content .configuration-block .left-column-base {
+    margin: 0;
+    padding: 0;
+}
+
+#block-linux-body #block-linux-body-content .configuration-block .filter-form {
+    margin: 0;
+    padding: 0;
+}
+
+#block-linux-body #block-linux-body-content .configuration-block h4 {
+    padding: 0;
+}
+
+#block-linux-body #block-linux-body-content .configuration-block .source-validation {
+    margin: 15px 15px;
+}
+
+#block-linux-body #block-linux-body-content .configuration-block form.filter-form select {
+    width: 30%;
+}
+
+#block-linux-body #block-linux-body-content .configuration-subblock .nav-left {
+    width: 30%;
+}
+

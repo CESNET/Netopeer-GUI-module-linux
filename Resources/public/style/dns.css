@@ -1,0 +1,43 @@
+.dns-servers div.dns-server {
+    display: inline-block;
+    width: 90px;
+    padding: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.dns-servers div.dns-server > * {
+    display: block;
+    margin: 0 auto;
+}
+
+.dns-servers div.link-active {
+    background-color: #004F80;
+    color: white;
+}
+
+.dns-servers div.link-inactive {
+    background-color: lightgrey;
+}
+
+.dns-servers div.link-active:hover {
+    cursor: pointer;
+    background-color:  #002034;
+}
+
+.dns-servers div.link-inactive:hover {
+    cursor: default;
+}
+
+.dns-servers div.dns-server .server-name {
+    padding-bottom: 5px;
+}
+
+.dns-servers div.dns-server .fa-server,  .dns-servers div.dns-server .fa-plus-circle {
+    color: #de9a71;
+}

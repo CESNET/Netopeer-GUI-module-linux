@@ -1,0 +1,49 @@
+.ntp-servers div.ntp-server {
+    display: inline-block;
+    width: 80px;
+    padding: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.ntp-servers div.ntp-server > * {
+    display: block;
+    margin: 0 auto;
+}
+
+.ntp-servers div.link-active {
+    background-color: #004F80;
+    color: white;
+}
+
+.ntp-servers div.link-inactive {
+    background-color: lightgrey;
+}
+
+.ntp-servers div.link-active:hover {
+    cursor: pointer;
+    background-color:  #002034;
+}
+
+.ntp-servers div.link-inactive:hover {
+    cursor: default;
+}
+
+.ntp-servers div.ntp-server .server-name {
+    padding-bottom: 5px;
+}
+
+.ntp-servers div.ntp-server .fa-server,  .ntp-servers div.ntp-server .fa-plus-circle {
+    color: #de9a71;
+}
+
+.ntp-config-img .switch-ntp-buttons {
+    margin-left: 1em;
+    padding-bottom: 5px;
+}
+

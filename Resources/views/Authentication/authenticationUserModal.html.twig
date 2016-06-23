@@ -1,0 +1,26 @@
+{% extends 'FITModuleLinuxBundle::layoutModal.html.twig' %}
+
+{% block linuxModalHeader %}
+    <span class="modal-title">Edit User</span>
+    <button type="button" class="modal-close close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+{% endblock linuxModalHeader %}
+
+{% block linuxModalBody %}
+    {% if formConfigAuthentication is defined and formConfigAuthentication is not null %}
+        {% form_theme formConfigAuthentication 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+        {{ form_start(formConfigAuthentication, {'action': path('get_user_form'), 'attr': {'data-path-remove': path('remove_item_form', {"key":"0", "module":"system", "subsection":"authentication"})}}) }}
+        <div class="form-errors">
+            {{ form_errors(formConfigAuthentication) }}
+        </div>
+        {% include 'FITModuleLinuxBundle:Authentication:authenticationUserForm.html.twig' with {'formConfigAuthentication': formConfigAuthentication} %}
+        {{ form_end(formConfigAuthentication, {'render_rest': false}) }}
+    {% endif %}
+{% endblock linuxModalBody %}
+
+{% block linuxModalFooter %}
+    <button class="btn btn-success modal-submit submit">Ok</button>
+    <button class="btn btn-primary close" data-dismiss="modal">Close</button>
+    <button class="btn btn-danger remove-item">Remove</button>
+{% endblock linuxModalFooter %}

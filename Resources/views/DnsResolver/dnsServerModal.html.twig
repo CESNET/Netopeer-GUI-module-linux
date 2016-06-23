@@ -1,0 +1,26 @@
+{% extends 'FITModuleLinuxBundle::layoutModal.html.twig' %}
+
+{% block linuxModalHeader %}
+    <span class="modal-title">Edit DNS Server</span>
+    <button type="button" class="modal-close close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+{% endblock linuxModalHeader %}
+
+{% block linuxModalBody %}
+    {% if formConfigDnsResolver is defined and formConfigDnsResolver is not null %}
+        {% form_theme formConfigDnsResolver 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+        {{ form_start(formConfigDnsResolver, {'action': path('get_dns_server_form'), 'attr': {'data-path-remove': path('remove_item_form', {"key":"0", "module":"system", "subsection":"dns-resolver"})}}) }}
+        <div class="form-errors">
+            {{ form_errors(formConfigDnsResolver) }}
+        </div>
+        {% include 'FITModuleLinuxBundle:DnsResolver:dnsServerForm.html.twig' with {'formConfigDnsResolver': formConfigDnsResolver} %}
+        {{ form_end(formConfigDnsResolver, {'render_rest': false}) }}
+    {% endif %}
+{% endblock linuxModalBody %}
+
+{% block linuxModalFooter %}
+    <button class="btn btn-success modal-submit submit">Ok</button>
+    <button class="btn btn-primary close" data-dismiss="modal">Close</button>
+    <button class="btn btn-danger remove-item">Remove</button>
+{% endblock linuxModalFooter %}

@@ -1,46 +1,26 @@
-/*
-* @author David Alexa <alexa.david@me.com>
-*
-* Copyright (C) 2012-2013 CESNET
-*
-* LICENSE TERMS
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions
-* are met:
-* 1. Redistributions of source code must retain the above copyright
-*    notice, this list of conditions and the following disclaimer.
-* 2. Redistributions in binary form must reproduce the above copyright
-*    notice, this list of conditions and the following disclaimer in
-*    the documentation and/or other materials provided with the
-*    distribution.
-* 3. Neither the name of the Company nor the names of its contributors
-*    may be used to endorse or promote products derived from this
-*    software without specific prior written permission.
-*
-* ALTERNATIVELY, provided that this notice is retained in full, this
-* product may be distributed under the terms of the GNU General Public
-* License (GPL) version 2 or later, in which case the provisions
-* of the GPL apply INSTEAD OF those given above.
-*
-* This software is provided ``as is'', and any express or implied
-* warranties, including, but not limited to, the implied warranties of
-* merchantability and fitness for a particular purpose are disclaimed.
-* In no event shall the company or contributors be liable for any
-* direct, indirect, incidental, special, exemplary, or consequential
-* damages (including, but not limited to, procurement of substitute
-* goods or services; loss of use, data, or profits; or business
-* interruption) however caused and on any theory of liability, whether
-* in contract, strict liability, or tort (including negligence or
-* otherwise) arising in any way out of the use of this software, even
-* if advised of the possibility of such damage.
-*/
 
 #block-linux-title {
     
 }
 
+#block--singleContent {
+    width: 100% !important;
+    background:url('../images/linux_background.gif') repeat top left;
+}
 
+#block--leftColumn {
+    display: none;
+}
+
+#block-linux-body {
+    margin: 0 auto;
+    background: #fafafa;
+    max-width: 1200px;
+
+    padding: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+}
 
 #block-linux-body > div {
     display: block;
@@ -51,27 +31,32 @@
 }
 
 #block-linux-body #block-linux-body-title .linux-submenu {
-    padding-top: 30px;
+    padding-left: 75px;
+    /* padding-top: 30px;*/
     border-bottom: 2px solid #004f80;
     z-index: 100;
     margin-bottom: 0px;
+    /* background-color: lightblue; */
+    padding-top: 12px;
+    margin-top: 18px;
 }
 
 #block-linux-body #block-linux-body-title .linux-submenu .linux-submenu-link {
-    background: white;
+    background: #F2F2F2;
     text-decoration: none;
     border: 1px solid #004f80;
     padding: 8px 8px 0px 8px;
-    border-radius: 10%;
+    border-radius: 2px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    margin-right: 0.5px;
+  /*  margin-right: 0.5px; */
     font-size: 16px;
 }
 
 #block-linux-body #block-linux-body-title .linux-submenu .linux-submenu-link.linux-submenu-link-active {
+    background: #FAFAFA;
     font-weight: bold;
-    background: #F5F5F5;
+
     border: 2px solid #004f80;
     border-bottom: 0px;
     padding: 10px 8px 2px 8px;
@@ -79,29 +64,183 @@
 }
 
 #block-linux-body #block-linux-body-content {
-    background: #F5F5F5;
-    padding-top: 5px;
-    padding-bottom: 30px;
+    padding: 0px;
 }
 
-#block-linux-body #block-linux-body-content form{
+#block-linux-body #block-linux-body-content .warning-text {
+    text-align: center;
+    padding: 20px 0px 40px 10px;
+    font-weight: bold;
+    color: red;
+    background-color: #FFE3E3;
+    border-radius: 1px;
+}
+
+#block-linux-body #block-linux-body-content form .form-errors {
+    padding-left: 20px;
+    color: red;
+}
+
+#block-linux-body #block-linux-body-content form .form-errors ul li {
+    list-style: circle;
+}
+
+#block-linux-body #block-linux-body-content .input-group > div {
+    display: inline;
+}
+
+#block-linux-body #block-linux-body-content .input-group .input-content > div {
+    display: inline;
+}
+
+#block-linux-body #block-linux-body-content .input-group .input-content > div:not(:first-child) {
+    display: block;
+    margin-left: 154px;
+}
+
+#block-linux-body #block-linux-body-content .input-group .input-content div > input:not(:first-child), #block-linux-body #block-linux-body-content .input-group .input-content div > select:not(:first-child) {
+     display: block;
+     margin-left: 154px;
+}
+
+#block-linux-body #block-linux-body-content .input-group .input-content .fa-remove {
+    vertical-align: middle;
+    margin: 8px 5px 0px 5px;
+    cursor: pointer;
+}
+
+#block-linux-body #block-linux-body-content .input-group .input-content > .fa-plus {
+    display: block;
+    cursor: pointer;
+    margin-left: 154px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#block-linux-body #block-linux-body-content .input-group .input-label label {
+    width: 150px;
+}
+
+#block-linux-body #block-linux-body-content .input-group.required label {
+    font-weight: bold;
+}
+
+#block-linux-body #block-linux-body-content .input-group.readonly input {
+    background-color: #e3e3e3;
+}
+
+#block-linux-body #block-linux-body-content .hidden-form {
     display: none;
 }
 
+#block-linux-body #block-linux-body-content .configuration-block {
+    display: block;
+    padding: 1px 5px 5px 5px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    border-top: 1px solid lightgrey;
+}
+
+#block-linux-body #block-linux-body-content .configuration-block > *:not(h3) {
+    padding-left: 5px;
+}
+
+#block-linux-body #block-linux-body-content .configuration-block h3 {
+    margin-top: 5px;
+    padding-bottom: 10px;
+}
+
+#block-linux-body #block-linux-body-content .configuration-subblock {
+    padding-bottom: 10px;
+}
+
+#block-linux-body #block-linux-body-content #subsection-content {
+    margin: 0px;
+}
+
+#block-linux-body #block-linux-body-content #subsection-content td {
+    border: none;
+}
+
+#block-linux-body #block-linux-body-content #subsection-content .arrow-navigation-text {
+    font-size: 80%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#block-linux-body #block-linux-body-content #subsection-content .content {
+    width: 100%;
+    min-width: 600px;
+}
+
+#block-linux-body #block-linux-body-content #subsection-content #previous-subsection {
+    text-align: center;
+    cursor: pointer;
+    background-color: #eee;
+    width: 75px;
+    max-width: 75px;
+    min-width: 75px;
+    padding: 0px;
+}
+
+#block-linux-body #block-linux-body-content #subsection-content #previous-subsection:hover {
+    background-color: #ddd;
+}
+
+#block-linux-body #block-linux-body-content #subsection-content #next-subsection {
+    text-align: center;
+    cursor: pointer;
+    background-color: #eee;
+    max-width: 75px;
+    width: 75px;
+    min-width: 75px;
+    padding: 0px;
+}
+
+#block-linux-body #block-linux-body-content #subsection-content #next-subsection:hover {
+    background-color: #ddd;
+}
+
+#block-linux-body #block-linux-body-content > div {
+    display: inline;
+}
+
+/* Taken from original styles - NetopeerBundle screen.css*/
+#block-linux-body #block-linux-body-content .input-group select, #block-linux-body #block-linux-body-content .input-group input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 5px;
+    border: 1px solid #999;
+    background: #fff;
+    margin-top: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    *zoom: 1;
+    *display: inline;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
 #block-linux-body #block-linux-body-buttons {
+    width: 100%;
     border-top: 1px solid grey;
     padding-top: 10px;
     display: block;
 }
 
 #block-linux-body #block-linux-body-buttons button {
-    background-color: #004F80;
     border-radius: 5px;
     padding: 8px 20px;
     color: #FFF;
     font-size: 1em;
     font-weight: normal;
-    border: 1px solid #003F67;
     cursor: pointer;
     box-shadow: 0px 0px 8px 0px #AAA;
     margin: 15px 0px;
@@ -115,16 +254,50 @@
 }
 
 #block-linux-body #block-linux-body-buttons button:hover {
-    background-color: #002339;
-    border-color: #00101a;
+  /*  background-color: #002339;
+    border-color: #00101a;*/
 }
 
 #block-linux-debugging {
+    display: block;
+    width: 100%;
     padding-top: 10px;
     margin-top: 40px;
     border-top: 1px solid grey;
 }
 
+.linux-navigation {
+    padding-top: 3px;
+    padding-bottom: 10px;
+    font-size: 8px;
+}
+
+.linux-navigation .linux-navigation-link {
+    font-size: 10px;
+}
+/*
+#ajax-spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("../images/ajax-loader.gif"), rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 0;
+    left: 0;
+    z-index: 30; }
+
+/*
+.btn-success {
+    background-image: -webkit-linear-gradient(top, #5cb85c 0%, #419641 100%);
+    background-image: -o-linear-gradient(top, #5cb85c 0%, #419641 100%);
+    background-image: linear-gradient(to bottom, #5cb85c 0%, #419641 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff419641', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+    border-color: #3e8f3e;
+}
+*/
 
 /*
 #subsection-links nav li subsection-link-text {

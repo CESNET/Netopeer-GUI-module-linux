@@ -1,0 +1,27 @@
+{% form_theme formConfigInterfaces 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+{% for interface in formConfigInterfaces.interface %}
+    <div class="interface-subform {{ 'interface-' ~ interface.vars.value.name}}">
+        {{ form_row(interface.name) }}
+        {{ form_row(interface.description) }}
+        {{ form_row(interface.type) }}
+        {{ form_row(interface.enabled) }}
+        {{ form_row(interface.linkUpDownTrapEnable) }}
+
+        {% if interface.ipv4 is defined and interface.ipv4 is not null %}
+            {{ form_row(interface.ipv4.enabled) }}
+            {{ form_row(interface.ipv4.forwarding) }}
+            {{ form_row(interface.ipv4.mtu) }}
+
+            {% if interface.ipv4.address is defined and interface.ipv4.address is not null %}
+                {{ form_row(interface.ipv4.address.ip) }}
+                {{ form_row(interface.ipv4.address.prefixLength) }}
+                {{ form_row(interface.ipv4.address.netmask) }}
+            {% endif %}
+
+            {% if interface.ipv4.neighbor is defined and interface.ipv4.neighbor is not null %}
+                {{ form_row(interface.ipv4.neighbor.ip) }}
+                {{ form_row(interface.ipv4.neighbor.linkLayerAddress) }}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endfor %}

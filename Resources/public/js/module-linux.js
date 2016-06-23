@@ -1,3 +1,13 @@
+$(document).ajaxStart(function() {
+    $("#ajax-spinner").show();
+});
+
+$(document).ajaxStop(function() {
+    $("#ajax-spinner").fadeOut();
+});
+
+
+
 $(document).ready(function() {
     // Just for debugging
     $("button.toggle-main-xml").click(function(){

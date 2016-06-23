@@ -1,0 +1,19 @@
+<div class="system-identification">
+	<h2>Identification configuration</h2>
+
+	<div id="identification-form">
+		{% if formConfigIdentification is defined and formConfigIdentification is not null %}
+			{% form_theme formConfigIdentification 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+			{{ form_start(formConfigIdentification) }}
+			<div class="form-errors">
+				{{ form_errors(formConfigIdentification) }}
+			</div>
+			<div class="configuration-block">
+				{{ form_row(formConfigIdentification.contact) }}
+				{{ form_row(formConfigIdentification.hostname) }}
+				{{ form_row(formConfigIdentification.location) }}
+			</div>
+			{{ form_end(formConfigIdentification, {'render_rest': false}) }}
+		{% endif %}
+	</div>
+</div>

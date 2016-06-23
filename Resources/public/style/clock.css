@@ -1,5 +1,4 @@
-
-.timezones-map { 
+.timezones-map {
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -10,6 +9,11 @@
     border: 1px solid grey;
     margin-left: -4px;
     height: 350px;
+    cursor: pointer;
+}
+
+.timezone-map:hover {
+    border: 2px solid red;
 }
 
 .active-zone { border: 2px solid red; }

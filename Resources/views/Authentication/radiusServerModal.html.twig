@@ -1,0 +1,26 @@
+{% extends 'FITModuleLinuxBundle::layoutModal.html.twig' %}
+
+{% block linuxModalHeader %}
+    <span class="modal-title">Edit Radius Server</span>
+    <button type="button" class="modal-close close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+{% endblock linuxModalHeader %}
+
+{% block linuxModalBody %}
+    {% if formConfigRadius is defined and formConfigRadius is not null %}
+        {% form_theme formConfigRadius 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+        {{ form_start(formConfigRadius, {'action': path('get_radius_server_form'), 'attr': {'data-path-remove': path('remove_item_form', {"key":"0", "module":"system", "subsection":"radius"})}}) }}
+        <div class="form-errors">
+            {{ form_errors(formConfigRadius) }}
+        </div>
+        {% include 'FITModuleLinuxBundle:Authentication:radiusServerForm.html.twig' with {'formConfigRadius': formConfigRadius} %}
+        {{ form_end(formConfigRadius, {'render_rest': false}) }}
+    {% endif %}
+{% endblock linuxModalBody %}
+
+{% block linuxModalFooter %}
+    <button class="btn btn-success modal-submit submit">Ok</button>
+    <button class="btn btn-primary close" data-dismiss="modal">Close</button>
+    <button class="btn btn-danger remove-item">Remove</button>
+{% endblock linuxModalFooter %}

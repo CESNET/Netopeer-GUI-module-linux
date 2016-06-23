@@ -1,0 +1,26 @@
+{% extends 'FITModuleLinuxBundle::layoutModal.html.twig' %}
+
+{% block linuxModalHeader %}
+    <span class="modal-title">Edit Interface</span>
+    <button type="button" class="modal-close close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+{% endblock linuxModalHeader %}
+
+{% block linuxModalBody %}
+    {% if formConfigInterfaces is defined and formConfigInterfaces is not null %}
+        {% form_theme formConfigInterfaces 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+        {{ form_start(formConfigInterfaces, {'action': path('get_interface_form'), 'attr': {'data-path-remove': path('remove_item_form', {"key":"0", "module":"interfaces", "subsection":""})}}) }}
+        <div class="form-errors">
+            {{ form_errors(formConfigInterfaces) }}
+        </div>
+        {% include 'FITModuleLinuxBundle:InterfaceManagement:interfaceForm.html.twig' with {'formConfigInterfaces': formConfigInterfaces} %}
+        {{ form_end(formConfigInterfaces, {'render_rest': false}) }}
+    {% endif %}
+{% endblock linuxModalBody %}
+
+{% block linuxModalFooter %}
+    <button class="btn btn-success modal-submit submit">Ok</button>
+    <button class="btn btn-primary close" data-dismiss="modal">Close</button>
+    <button class="btn btn-danger remove-item">Remove</button>
+{% endblock linuxModalFooter %}

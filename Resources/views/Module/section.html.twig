@@ -6,63 +6,85 @@
 
 {% block linuxBody %}
 
-    <h1 class="left">System - Linux bundle</h1>
+    <h1>Linux Bundle</h1>
 
     {% if stateArr is defined and not(stateArr is empty) %}
-        <hr class="cleaner" />
+        <br>
+
         <div id="subsection-links">
-          
+            <h2>System</h2>
+
             <ul>
                 <li>
-                    <a href="{{ path( 'system_identification', {"key":app.request.get('key')} ) }}" class = "subsection-active">
+                    <a href="{{ path( 'system_identification', {"key":app.request.get('key'), "module": "system"} ) }}" class = "subsection-active">
                         System identification
-                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_default.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
+                        <br>
+                        <i class="fa fa-info fa-4x" aria-hidden="true"></i>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ path( 'system_time_management', {"key":app.request.get('key'), "module": "system", "subsection": "clock"} ) }}" class = "subsection-active">
                         System time management
-                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_time.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/> 
+                        <br>
+                        <i class="fa fa-clock-o fa-4x" aria-hidden="true"></i>
                     </a>
                 </li>
                 
                 <li>
                     <a href="{{ path( 'dns_resolver', {"key":app.request.get('key'), "module": "system", "subsection": "dns-resolver"} ) }}" class = "subsection-active">
                         DNS resolver
-                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_dns.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
+                        <br>
+                        <i class="fa fa-server fa-4x" aria-hidden="true"></i>
                     </a>
                 </li>
                 
                 <li>
-                    <a href="{{ path( 'radius_client', {"key":app.request.get('key')} ) }}" class = "subsection-active">
-                        RADIUS Client
-                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_default.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="{{ path( 'user_authentication', {"key":app.request.get('key')} ) }}" class = "subsection-active">
+                    <a href="{{ path( 'authentication', {"key":app.request.get('key')} ) }}" class = "subsection-active">
                         User authentication
-                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_default.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
+                        <br>
+                        <i class="fa fa-user fa-4x" aria-hidden="true"></i>
                     </a>
                 </li>
                 
                 <li>
                     <a href="{{ path( 'system_control', {"key":app.request.get('key')} ) }}" class = "subsection-active">
                         System control
-                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_default.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
+                        <br>
+                        <i class="fa fa-wrench fa-4x" aria-hidden="true"></i>
                     </a>
                 </li>
                 
                 <li>
-                    <a href="#" class = "subsection-inactive">
-                        Settings
-                        <img src="{{ asset('bundles/fitmodulelinux/images/icons/64_settings.png' ) }}" alt="{{ 'dns icons' }}"  class="subsection-icon"/>       
+                    <a href="{{ path( 'system_settings', {"key":app.request.get('key'), "module": "system"} ) }}" class = "subsection-active">
+                        System Settings
+                        <br>
+                        <i class="fa fa-cogs fa-4x" aria-hidden="true"></i>
                     </a>
                 </li>
             </ul>
+        </div>
 
+        <div id="subsection-links">
+            <h2>Interfaces</h2>
+
+            <ul>
+                <li>
+                    <a href="{{ path( 'interface_management', {"key":app.request.get('key')} ) }}" class = "subsection-active">
+                        Interface management
+                        <br>
+                        <i class="fa fa-wifi fa-4x" aria-hidden="true"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path( 'system_settings', {"key":app.request.get('key'), "module": "interfaces"} ) }}" class = "subsection-active">
+                        Interfaces Settings
+                        <br>
+                        <i class="fa fa-cogs fa-4x" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
 
     {% endif %}   

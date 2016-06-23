@@ -1,0 +1,80 @@
+{% extends 'FITModuleLinuxBundle::layoutSubsection.html.twig' %}
+
+{% block linuxBodyTitle %}
+
+    <h1>Settings</h1>
+    <div class="linux-navigation">
+        <a href="{{ path( 'module', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+            System
+        </a>
+        >>
+        <a href="{{ path( 'system_settings', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+            System settings
+        </a>
+    </div>
+
+    <div class="linux-submenu">
+    </div>
+
+{% endblock linuxBodyTitle %}
+
+{% block linuxBodyContent %}
+
+    <h2>{% if sectionName is defined %}{{ sectionName }}{% endif %} Settings</h2>
+
+    <div class="configuration-block">
+        <h3>Datastores</h3>
+
+        {% if stateArr is defined and formConfig is defined %}
+            <div class="configuration-subblock">
+                <h4>Change datastore</h4>
+                <div class="left-column-base">
+                    {% block filterConfig %}
+                        <form action="" method="post" {{ form_enctype(formConfig) }} class="filter-form" name="formConfig" data-disable-active-link="true">
+                            {{ form_widget(formConfig) }}
+                        </form>
+                    {% endblock filterConfig %}
+                    <div id="block--sourceValidation">
+                        {% block sourceValidation %}
+                            <a href="{{ path('validateSource', {"key": app.request.get('key'), "target": dataStore, "module": app.request.get('module')}) }}" class="ajaxLink button grey small left" data-disable-history="true">Validate this datastore</a>
+                            <br>
+                            {% if isSourceValid is defined %}
+                                <span class="source-validation bubble {{ (isSourceValid) ? 'green' : 'red' }}">{{ (isSourceValid) ? 'valid' : 'invalid' }}</span>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+
+            <hr class="cleaner" />
+            <div class="configuration-subblock">
+                {% if formCopyConfig is defined %}
+                    <h4>Copy active datastore to:</h4>
+                    <div class="left-column-base">
+                        <form action="" method="post" {{ form_enctype(formCopyConfig) }} class="filter-form" name="formCopyConfig">
+                            {{ form_widget(formCopyConfig) }}
+                            <input type="submit" value="Copy active datastore" class="button small grey left" />
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="configuration-block">
+        <h3>Styles</h3>
+        <div class="configuration-subblock">
+            <h4>Change output style</h4>
+            {% if moduleStylesForm is defined %}
+                <form action="" method="post" {{ form_enctype(moduleStylesForm) }} class="filter-form" name="outputStyle">
+                    {{ form_widget(moduleStylesForm.controllerAction) }}
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock linuxBodyContent %}
+
+{% block linuxBodyButtons %}
+    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "system"}) }}">Back</button>
+{% endblock linuxBodyButtons %}

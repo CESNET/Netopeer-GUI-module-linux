@@ -1,0 +1,10 @@
+{% form_theme formConfigRadius 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
+{% for server in formConfigRadius.server %}
+    <div class="server-subform {{ 'server-' ~ server.vars.value.name}}">
+        {{ form_row(server.name) }}
+        {{ form_row(server.udp.address) }}
+        {{ form_row(server.udp.authenticationPort) }}
+        {{ form_row(server.udp.sharedSecret) }}
+        {{ form_row(server.authenticationType) }}
+    </div>
+{% endfor %}

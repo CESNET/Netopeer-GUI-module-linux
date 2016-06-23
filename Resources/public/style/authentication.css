@@ -1,0 +1,43 @@
+.users div.user {
+    display: inline-block;
+    width: 80px;
+    padding: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.users div.user > * {
+    display: block;
+    margin: 0 auto;
+}
+
+.users div.link-active {
+    background-color: #004F80;
+    color: white;
+}
+
+.users div.link-inactive {
+    background-color: lightgrey;
+}
+
+.users div.link-active:hover {
+    cursor: pointer;
+    background-color:  #002034;
+}
+
+.users div.link-inactive:hover {
+    cursor: default;
+}
+
+.users div.user .user-name {
+    padding-bottom: 5px;
+}
+
+.users div.user .fa-user,  .users div.user .fa-plus-circle {
+    color: #de9a71;
+}

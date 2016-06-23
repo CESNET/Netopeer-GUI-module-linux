@@ -1,0 +1,43 @@
+.radius-servers div.radius-server {
+    display: inline-block;
+    width: 90px;
+    padding: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.radius-servers div.radius-server > * {
+    display: block;
+    margin: 0 auto;
+}
+
+.radius-servers div.link-active {
+    background-color: #004F80;
+    color: white;
+}
+
+.radius-servers div.link-inactive {
+    background-color: lightgrey;
+}
+
+.radius-servers div.link-active:hover {
+    cursor: pointer;
+    background-color:  #002034;
+}
+
+.radius-servers div.link-inactive:hover {
+    cursor: default;
+}
+
+.radius-servers div.radius-server .server-name {
+    padding-bottom: 5px;
+}
+
+.radius-servers div.radius-server .fa-server,  .radius-servers div.radius-server .fa-plus-circle {
+    color: #de9a71;
+}
