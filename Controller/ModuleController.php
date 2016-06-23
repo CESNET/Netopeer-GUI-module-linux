@@ -336,11 +336,15 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 				$childElement->addAttribute("xc:operation", "remove", "urn:ietf:params:xml:ns:netconf:base:1.0");
 
 				$this->addNodesToRemoveUnderRemovedParent($child, $childElement);
+				continue;
 
 			} else if (($deep >= 0) && is_array($arrayElements = $simpleXmlNew->xpath($childXpath))) {
 				$keyExistsInArray = false;
 				foreach ($arrayElements as $arrayElement) {
 					if ((string)$arrayElement == (string)$child) {
+						$keyExistsInArray = true;
+					}
+					if (!(strlen((string)$arrayElement->children()) == 0) && ((string)$arrayElement->children() == (string)$child->children())) {
 						$keyExistsInArray = true;
 					}
 				}
@@ -355,6 +359,7 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 					$childElement->addAttribute("xc:operation", "remove", "urn:ietf:params:xml:ns:netconf:base:1.0");
 
 					$this->addAllNodesToRemoveUnderRemovedParent($child, $childElement);
+					continue;
 				}
 			}
 
