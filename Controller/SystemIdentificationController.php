@@ -2,6 +2,7 @@
 
 namespace FIT\Bundle\ModuleLinuxBundle\Controller;
 
+use FIT\Bundle\ModuleLinuxBundle\LinuxSectionNames;
 use FIT\Bundle\ModuleLinuxBundle\Models\Forms\SystemIdentification;
 use FIT\Bundle\ModuleLinuxBundle\Models\FormBuilders\SystemIdentificationType;
 use FIT\NetopeerBundle\Controller\ModuleControllerInterface;
@@ -26,7 +27,7 @@ class SystemIdentificationController extends \FIT\Bundle\ModuleLinuxBundle\Contr
      *
      * @return array|null|\SimpleXMLIterator|RedirectResponse|Response
 	 */
-	public function systemIdentificationAction($key, $module = "system", $subsection = null)
+	public function systemIdentificationAction($key, $module = LinuxSectionNames::MODULE_SYSTEM_NAME, $subsection = null)
     {
         if ($this->getRequest()->getMethod() == 'POST') {
             $res = $this->handleSystemIdentificationForm($key, $module, $subsection);

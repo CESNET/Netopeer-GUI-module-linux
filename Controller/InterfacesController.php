@@ -2,6 +2,7 @@
 
 namespace FIT\Bundle\ModuleLinuxBundle\Controller;
 
+use FIT\Bundle\ModuleLinuxBundle\LinuxSectionNames;
 use FIT\Bundle\ModuleLinuxBundle\Models\FormBuilders\InterfaceInformationType;
 use FIT\Bundle\ModuleLinuxBundle\Models\FormBuilders\InterfacesType;
 use FIT\Bundle\ModuleLinuxBundle\Models\Forms\InterfaceInformation;
@@ -32,7 +33,7 @@ class InterfacesController extends ModuleController
      *
      * @return array|null|\SimpleXMLIterator|RedirectResponse|Response
      */
-    public function systemTimeManagementAction($key, $module = "interfaces", $subsection = "")
+    public function systemTimeManagementAction($key, $module = LinuxSectionNames::MODULE_INTERFACES_NAME, $subsection = null)
     {
         if ($this->getRequest()->getMethod() == 'POST') {
             $res = $this->handleInterfacesForm($key, $module, $subsection);

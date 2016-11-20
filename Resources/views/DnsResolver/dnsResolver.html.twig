@@ -4,17 +4,17 @@
 
     <h1>DNS resolver</h1>
     <div class="linux-navigation">
-        <a href="{{ path( 'module', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+        <a href="{{ path( 'module', {"key": app.request.get('key'), "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_SYSTEM_NAME")} ) }}" class="linux-navigation-link">
             System
         </a>
         >>
-        <a href="{{ path( 'dns_resolver', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+        <a href="{{ path( 'dns_resolver', {"key": app.request.get('key')} ) }}" class="linux-navigation-link">
             DNS resolver
         </a>
     </div>
 
     <div class="linux-submenu">
-        <a href="{{ path( 'dns_resolver', {"key":app.request.get('key'), "module":"system", "subsection":"dns-resolver"} ) }}" class="linux-submenu-link-active linux-submenu-link">
+        <a href="{{ path( 'dns_resolver', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_DNS_NAME")} ) }}" class="linux-submenu-link-active linux-submenu-link">
             DNS resolver
         </a>
     </div>
@@ -26,7 +26,7 @@
 <hr class="cleaner" />
 <table id="subsection-content">
     <tr>
-        <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system", "subsection":"ntp"} ) }}">
+        <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'system_time_management', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_NTP_NAME")} ) }}">
             <div class="arrow-navigation-text">Previous</div>
             <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
             <div class="arrow-navigation-text">Ntp</div>
@@ -36,7 +36,7 @@
                 {% include 'FITModuleLinuxBundle:DnsResolver:dnsDetail.html.twig' with {'stateArrIsDefined': stateArr is defined, 'formConfigDnsResolver': formConfigDnsResolver} %}
             {% endif %}
         </td>
-        <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system", "subsection":"authentication"} ) }}">
+        <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'authentication', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_AUTHENTICATION_NAME")} ) }}">
             <div class="arrow-navigation-text">Next</div>
             <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
             <div class="arrow-navigation-text">User authentication</div>
@@ -48,5 +48,5 @@
 
 {% block linuxBodyButtons %}
     <button class="btn btn-success save-subsection system-identification">Save</button>
-    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "system"}) }}">Back</button>
+    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_SYSTEM_NAME")}) }}">Back</button>
 {% endblock linuxBodyButtons %}

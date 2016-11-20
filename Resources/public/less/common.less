@@ -1,0 +1,269 @@
+@primaryBlue: #004f80;
+
+#block--singleContent {
+  width: 100% !important;
+  background:url('../images/linux_background.gif') repeat top left;
+}
+
+#block--leftColumn {
+  display: none;
+}
+
+#block-linux-body > div {
+  display: block;
+}
+
+#block-linux-body {
+  margin: 0 auto;
+  background: #fafafa;
+  max-width: 1200px;
+  padding: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+
+  #block-linux-body-title {
+    margin-bottom: 0px;
+
+    .linux-submenu {
+      padding-left: 75px;
+      border-bottom: 2px solid @primaryBlue;
+      z-index: 100;
+      margin-bottom: 0px;
+      padding-top: 12px;
+      margin-top: 18px;
+
+      .linux-submenu-link {
+        background: #F2F2F2;
+        text-decoration: none;
+        border: 1px solid @primaryBlue;
+        padding: 8px 8px 0px 8px;
+        border-radius: 2px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        font-size: 16px;
+      }
+
+      .linux-submenu-link.linux-submenu-link-active {
+        background: #FAFAFA;
+        font-weight: bold;
+        border: 2px solid @primaryBlue;
+        border-bottom: 0px;
+        padding: 10px 8px 2px 8px;
+        z-index: 105;
+      }
+    }
+  }
+
+  #block-linux-body-content > div {
+    display: inline;
+  }
+
+  #block-linux-body-content {
+    padding: 0px;
+
+    .warning-text {
+      text-align: center;
+      padding: 20px 0px 40px 10px;
+      font-weight: bold;
+      color: red;
+      background-color: #FFE3E3;
+      border-radius: 1px;
+    }
+
+    form {
+      .form-errors {
+        padding-left: 20px;
+        color: red;
+      }
+
+      .form-errors ul li {
+        list-style: circle;
+      }
+    }
+
+    .input-group > div {
+      display: inline;
+    }
+
+    .input-group.required label {
+      font-weight: bold;
+    }
+
+    .input-group.readonly input {
+      background-color: #e3e3e3;
+    }
+
+    .input-group {
+
+      .input-content > div {
+        display: inline;
+      }
+
+      .input-content > div:not(:first-child) {
+        display: block;
+        margin-left: 154px;
+      }
+
+      .input-content div > input:not(:first-child), .input-content div > select:not(:first-child) {
+        display: block;
+        margin-left: 154px;
+      }
+
+      .input-content .fa-remove {
+        vertical-align: middle;
+        margin: 8px 5px 0px 5px;
+        cursor: pointer;
+      }
+
+      .input-content > .fa-plus {
+        display: block;
+        cursor: pointer;
+        margin-left: 154px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+
+      .input-label label {
+        width: 150px;
+      }
+
+      /* Taken from original styles - NetopeerBundle screen.css*/
+      select, input {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 200px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0px 5px;
+        border: 1px solid #999;
+        background: #fff;
+        margin-top: 10px;
+        display: inline-block;
+        vertical-align: middle;
+        *vertical-align: auto;
+        *zoom: 1;
+        *display: inline;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        font-size: 1em;
+      }
+    }
+
+    .hidden-form {
+      display: none;
+    }
+
+    .configuration-block > *:not(h3) {
+      padding-left: 5px;
+    }
+
+    .configuration-block {
+      display: block;
+      padding: 1px 5px 5px 5px;
+      margin-top: 25px;
+      margin-bottom: 30px;
+      border-top: 1px solid lightgrey;
+
+      h3 {
+        margin-top: 5px;
+        padding-bottom: 10px;
+      }
+    }
+
+    .configuration-subblock {
+      padding-bottom: 10px;
+    }
+
+    #subsection-content {
+      margin: 0px;
+
+      td {
+        border: none;
+      }
+
+      .arrow-navigation-text {
+        font-size: 80%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .content {
+        width: 100%;
+        min-width: 600px;
+      }
+
+      #previous-subsection {
+        text-align: center;
+        cursor: pointer;
+        background-color: #eee;
+        width: 75px;
+        max-width: 75px;
+        min-width: 75px;
+        padding: 0px;
+      }
+
+      #previous-subsection:hover {
+        background-color: #ddd;
+      }
+
+      #next-subsection {
+        text-align: center;
+        cursor: pointer;
+        background-color: #eee;
+        max-width: 75px;
+        width: 75px;
+        min-width: 75px;
+        padding: 0px;
+      }
+
+      #next-subsection:hover {
+        background-color: #ddd;
+      }
+    }
+  }
+
+  #block-linux-body-buttons {
+    width: 100%;
+    border-top: 1px solid grey;
+    padding-top: 10px;
+    display: block;
+
+    button {
+      border-radius: 5px;
+      padding: 8px 20px;
+      color: #FFF;
+      font-size: 1em;
+      font-weight: normal;
+      cursor: pointer;
+      box-shadow: 0px 0px 8px 0px #AAA;
+      margin: 15px 0px;
+      position: relative;
+      z-index: 1;
+      text-decoration: none;
+      text-align: left;
+      white-space: normal;
+      line-height: 1.3em;
+      font-family: Arial, Trebuchet, Verdana, sans-serif;
+    }
+  }
+}
+
+#block-linux-debugging {
+  display: block;
+  width: 100%;
+  padding-top: 10px;
+  margin-top: 40px;
+  border-top: 1px solid grey;
+}
+
+.linux-navigation {
+  padding-top: 3px;
+  padding-bottom: 10px;
+  font-size: 8px;
+}
+
+.linux-navigation .linux-navigation-link {
+  font-size: 10px;
+}

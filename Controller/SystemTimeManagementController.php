@@ -2,6 +2,7 @@
 
 namespace FIT\Bundle\ModuleLinuxBundle\Controller;
 
+use FIT\Bundle\ModuleLinuxBundle\LinuxSectionNames;
 use FIT\Bundle\ModuleLinuxBundle\Models\FormBuilders\ClockType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +29,13 @@ class SystemTimeManagementController extends ModuleController
      *
      * @return array|null|\SimpleXMLIterator|RedirectResponse|Response
      */
-	public function systemTimeManagementAction($key, $module = "system", $subsection = "clock")
+	public function systemTimeManagementAction($key, $module = LinuxSectionNames::MODULE_SYSTEM_NAME, $subsection = LinuxSectionNames::SUBSECTION_CLOCK_NAME)
     {
         if ($this->getRequest()->getMethod() == 'POST') {
             $res = false;
-            if ($subsection == "clock") {
+            if ($subsection == LinuxSectionNames::SUBSECTION_CLOCK_NAME) {
                 $res = $this->handleClockForm($key, $module, $subsection);
-            } else if ($subsection == "ntp") {
+            } else if ($subsection == LinuxSectionNames::SUBSECTION_NTP_NAME) {
                 $res = $this->handleNtpForm($key, $module, $subsection);
             }
 
@@ -45,23 +46,23 @@ class SystemTimeManagementController extends ModuleController
 
         $twigArr = $this->getLinuxBundleTwigArr($key, $module, $subsection);
 
-        if (array_key_exists('stateArr', $twigArr) && $subsection == "clock") {
+        if (array_key_exists('stateArr', $twigArr) && $subsection == LinuxSectionNames::SUBSECTION_CLOCK_NAME) {
             $features = $this->getFeatures($key);
             $twigArr['featureTimezoneName'] = (array_search('timezone-name', $features) !== false);
 
-            if (isset($twigArr['stateArr']->clock)) {
-                $form = $this->createForm(new ClockType(), Clock::createFromXml($twigArr['stateArr']->clock));
+            if (isset($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_CLOCK_NAME})) {
+                $form = $this->createForm(new ClockType(), Clock::createFromXml($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_CLOCK_NAME}));
             } else {
                 $form = $this->createForm(new ClockType(), new Clock());
             }
             $twigArr['formConfigClock'] = $form->createView();
         }
-        else if (array_key_exists('stateArr', $twigArr) && $subsection == "ntp") {
+        else if (array_key_exists('stateArr', $twigArr) && $subsection == LinuxSectionNames::SUBSECTION_NTP_NAME) {
             $features = $this->getFeatures($key);
             $twigArr['featureNtp'] = (array_search('ntp', $features) !== false);
 
-            if (isset($twigArr['stateArr']->ntp)) {
-                $form = $this->createForm(new NtpType(), Ntp::createFromXml($twigArr['stateArr']->ntp), array('features' => $features));
+            if (isset($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_NTP_NAME})) {
+                $form = $this->createForm(new NtpType(), Ntp::createFromXml($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_NTP_NAME}), array('features' => $features));
             } else {
                 $form = $this->createForm(new NtpType(), new Ntp());
             }

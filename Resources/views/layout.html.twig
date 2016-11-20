@@ -48,7 +48,7 @@ if advised of the possibility of such damage.
         '@FITModuleLinuxBundle/Resources/public/js/subsections/radius.js'
         '@FITModuleLinuxBundle/Resources/public/js/subsections/interfaces.js'
         '@FITModuleLinuxBundle/Resources/public/js/subsections/subsectionCommon.js'
-    '@FITModuleLinuxBundle/Resources/public/js/subsections/modal.js'
+        '@FITModuleLinuxBundle/Resources/public/js/subsections/modal.js'
 	output='js/compiled/module-linux.js'
 	%}
 	<script src="{{ asset_url }}"></script>
@@ -59,26 +59,14 @@ if advised of the possibility of such damage.
 	{% stylesheets
     'bundles/fitmodulelinux/bootstrap/css/bootstrap-theme.min.css'
     'bundles/fitmodulelinux/font-awesome/css/font-awesome.min.css'
+    'bundles/fitmodulelinux/less/common.less'
 	'bundles/fitmodulelinux/style/*'
-
 
 	filter='cssrewrite'
 	output='css/module-linux.css'
 	%}
 	<link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
-{# #}
-    {% stylesheets
-    'bundles/fitmodulelinux/bootstrap/css/bootstrap-theme.min.css'
-    'bundles/fitmodulelinux/font-awesome/css/font-awesome.min.css'
-    'bundles/fitmodulelinux/style/*'
-
-
-    filter='cssrewrite'
-    output='css/module-linux.css'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
 {% endblock %}
 
 {% block title %}Section {% if sectionName is defined and not(sectionName is empty) %}- {{ sectionName }}{% endif %}{% endblock title %}

@@ -5,31 +5,31 @@
     <h1>System time management</h1>
 
     <div class="linux-navigation">
-        <a href="{{ path( 'module', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+        <a href="{{ path( 'module', {"key": app.request.get('key'), "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_SYSTEM_NAME")} ) }}" class="linux-navigation-link">
             System
         </a>
         >>
-        <a href="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+        <a href="{{ path( 'system_time_management', {"key": app.request.get('key')} ) }}" class="linux-navigation-link">
             System time management
         </a>
         {% if formConfigClock is defined %}
             >>
-            <a href="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system", "subsection":"clock"} ) }}" class="linux-navigation-link">
+            <a href="{{ path( 'system_time_management', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_CLOCK_NAME")} ) }}" class="linux-navigation-link">
                 Clock
             </a>
         {% elseif formConfigNtp is defined %}
             >>
-            <a href="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system", "subsection":"ntp"} ) }}" class="linux-navigation-link">
+            <a href="{{ path( 'system_time_management', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_NTP_NAME")} ) }}" class="linux-navigation-link">
                 Ntp
             </a>
         {% endif %} 
     </div>
     
     <div class="linux-submenu">
-        <a href="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system", "subsection":"clock"} ) }}" class="{{ formConfigClock is defined ? 'linux-submenu-link-active' : '' }} linux-submenu-link">
+        <a href="{{ path( 'system_time_management', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_CLOCK_NAME")} ) }}" class="{{ formConfigClock is defined ? 'linux-submenu-link-active' : '' }} linux-submenu-link">
             Clock
         </a>
-        <a href="{{ path( 'system_time_management', {"key": app.request.get('key'), "module":"system", "subsection": "ntp"} ) }}" class="{{ formConfigNtp is defined ? 'linux-submenu-link-active' : '' }} linux-submenu-link">
+        <a href="{{ path( 'system_time_management', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_NTP_NAME")} ) }}" class="{{ formConfigNtp is defined ? 'linux-submenu-link-active' : '' }} linux-submenu-link">
             Ntp
         </a>
     </div>       
@@ -42,7 +42,7 @@
     <table id="subsection-content">
         <tr>
             {% if formConfigClock is defined %}
-                <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'system_identification', {"key":app.request.get('key'), "module":"system"} ) }}">
+                <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'system_identification', {"key": app.request.get('key')} ) }}">
                     <div class="arrow-navigation-text">Previous</div>
                     <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
                     <div class="arrow-navigation-text">System identification</div>
@@ -50,13 +50,13 @@
                 <td id="linux-body-content-clock" class="content">
                     {% include 'FITModuleLinuxBundle:SystemTimeManagement:clockDetail.html.twig' with {'featureTimezoneName': featureTimezoneName, 'formConfigClock': formConfigClock} %}
                 </td>
-                <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system", "subsection":"ntp"} ) }}">
+                <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'system_time_management', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_NTP_NAME")} ) }}">
                     <div class="arrow-navigation-text">Next</div>
                     <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
                     <div class="arrow-navigation-text">Ntp</div>
                 </td>
             {% elseif formConfigNtp is defined %}
-                <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system", "subsection":"clock"} ) }}">
+                <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'system_time_management', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_CLOCK_NAME")} ) }}">
                     <div class="arrow-navigation-text">Previous</div>
                     <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
                     <div class="arrow-navigation-text">Clock</div>
@@ -64,7 +64,7 @@
                 <td id="linux-body-content-ntp" class="content">
                     {% include 'FITModuleLinuxBundle:SystemTimeManagement:ntpDetail.html.twig' with {'featureNtp': featureNtp, 'formConfigNtp': formConfigNtp} %}
                 </td>
-                <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'dns_resolver', {"key":app.request.get('key'), "module":"system", "subsection":"dns-resolver"} ) }}">
+                <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'dns_resolver', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_DNS_NAME")} ) }}">
                     <div class="arrow-navigation-text">Next</div>
                     <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
                     <div class="arrow-navigation-text">Dns resolver</div>
@@ -78,5 +78,5 @@
 {% block linuxBodyButtons %}
 
     <button class="btn btn-success save-subsection system-time-management">Save</button>
-    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "system"}) }}">Back</button>
+    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key": app.request.get('key'), "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_SYSTEM_NAME")}) }}">Back</button>
 {% endblock linuxBodyButtons %}

@@ -4,17 +4,17 @@
 
     <h1>System identification</h1>
     <div class="linux-navigation">
-        <a href="{{ path( 'module', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+        <a href="{{ path( 'module', {"key": app.request.get('key'), "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_SYSTEM_NAME")} ) }}" class="linux-navigation-link">
             System
         </a>
         >>
-        <a href="{{ path( 'system_identification', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-navigation-link">
+        <a href="{{ path( 'system_identification', {"key": app.request.get('key')} ) }}" class="linux-navigation-link">
             System identification
         </a>
     </div>
 
     <div class="linux-submenu">
-        <a href="{{ path( 'system_identification', {"key":app.request.get('key'), "module":"system"} ) }}" class="linux-submenu-link-active linux-submenu-link">
+        <a href="{{ path( 'system_identification', {"key": app.request.get('key')} ) }}" class="linux-submenu-link-active linux-submenu-link">
             System identification
         </a>
     </div>
@@ -27,17 +27,17 @@
 
     <table id="subsection-content">
         <tr>
-            <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'interface_management', {"key":app.request.get('key'), "module":"interfaces", "subsection":""} ) }}">
+            <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'authentication', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_RADIUS_NAME")} ) }}">
                 <div class="arrow-navigation-text">Previous</div>
                 <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-                <div class="arrow-navigation-text">Interfaces management</div>
+                <div class="arrow-navigation-text">Radius</div>
             </td>
             <td id="linux-body-content-identification" class="content">
                 {% if formConfigIdentification is defined %}
                     {% include 'FITModuleLinuxBundle:SystemIdentification:identificationDetail.html.twig' with {'formConfigIdentification': formConfigIdentification} %}
                 {% endif %}
             </td>
-            <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'system_time_management', {"key":app.request.get('key'), "module":"system", "subsection":"clock"} ) }}">
+            <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'system_time_management', {"key": app.request.get('key'), "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_CLOCK_NAME")} ) }}">
                 <div class="arrow-navigation-text">Next</div>
                 <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
                 <div class="arrow-navigation-text">Clock</div>
@@ -49,5 +49,5 @@
 
 {% block linuxBodyButtons %}
     <button class="btn btn-success save-subsection system-identification">Save</button>
-    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "system"}) }}">Back</button>
+    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key": app.request.get('key'), "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_SYSTEM_NAME")}) }}">Back</button>
 {% endblock linuxBodyButtons %}

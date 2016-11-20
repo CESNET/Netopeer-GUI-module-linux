@@ -2,6 +2,7 @@
 
 namespace FIT\Bundle\ModuleLinuxBundle\Controller;
 
+use FIT\Bundle\ModuleLinuxBundle\LinuxSectionNames;
 use FIT\Bundle\ModuleLinuxBundle\Models\FormBuilders\DnsResolverServerType;
 use FIT\Bundle\ModuleLinuxBundle\Models\FormBuilders\DnsResolverType;
 use FIT\Bundle\ModuleLinuxBundle\Models\Forms\DnsResolver;
@@ -27,7 +28,7 @@ class DnsResolverController extends ModuleController
      *
      * @return array|null|\SimpleXMLIterator|RedirectResponse|Response
 	 */
-	public function dnsResolverAction($key, $module = "system", $subsection = "dns-resolver")
+	public function dnsResolverAction($key, $module = LinuxSectionNames::MODULE_SYSTEM_NAME, $subsection = LinuxSectionNames::SUBSECTION_DNS_NAME)
 	{
         if ($this->getRequest()->getMethod() == 'POST') {
             $res = $this->handleNtpForm($key, $module, $subsection);
@@ -39,10 +40,10 @@ class DnsResolverController extends ModuleController
         $twigArr = $this->getLinuxBundleTwigArr($key, $module, $subsection);
 
         if (array_key_exists('stateArr', $twigArr)) {
-            if (isset($twigArr['stateArr']->clock)) {
-                $form = $this->createForm(new DnsResolverType(), new DnsResolver(), array('features' => $this->getFeatures($key)));
+            if (isset($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_DNS_NAME})) {
+                $form = $this->createForm(new DnsResolverType(), DnsResolver::createFromXml($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_DNS_NAME}), array('features' => $this->getFeatures($key)));
             } else {
-                $form = $this->createForm(new DnsResolverType(), DnsResolver::createFromXml($twigArr['stateArr']->{'dns-resolver'}), array('features' => $this->getFeatures($key)));
+                $form = $this->createForm(new DnsResolverType(), new DnsResolver(), array('features' => $this->getFeatures($key)));
             }
             $twigArr['formConfigDnsResolver'] = $form->createView();
         }

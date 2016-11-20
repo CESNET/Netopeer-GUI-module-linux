@@ -1,7 +1,8 @@
-
+/*
 #block-linux-title {
     
 }
+
 
 #block--singleContent {
     width: 100% !important;
@@ -33,11 +34,11 @@
 #block-linux-body #block-linux-body-title .linux-submenu {
     padding-left: 75px;
     /* padding-top: 30px;*/
-    border-bottom: 2px solid #004f80;
+   /* border-bottom: 2px solid #004f80;
     z-index: 100;
     margin-bottom: 0px;
     /* background-color: lightblue; */
-    padding-top: 12px;
+   /* padding-top: 12px;
     margin-top: 18px;
 }
 
@@ -50,7 +51,7 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   /*  margin-right: 0.5px; */
-    font-size: 16px;
+  /*  font-size: 16px;
 }
 
 #block-linux-body #block-linux-body-title .linux-submenu .linux-submenu-link.linux-submenu-link-active {
@@ -206,7 +207,7 @@
 }
 
 /* Taken from original styles - NetopeerBundle screen.css*/
-#block-linux-body #block-linux-body-content .input-group select, #block-linux-body #block-linux-body-content .input-group input {
+/*#block-linux-body #block-linux-body-content .input-group select, #block-linux-body #block-linux-body-content .input-group input {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -256,8 +257,8 @@
 #block-linux-body #block-linux-body-buttons button:hover {
   /*  background-color: #002339;
     border-color: #00101a;*/
-}
-
+/*}
+/*
 #block-linux-debugging {
     display: block;
     width: 100%;

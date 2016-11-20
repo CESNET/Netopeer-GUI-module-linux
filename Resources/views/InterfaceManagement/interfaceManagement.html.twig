@@ -4,17 +4,17 @@
 
     <h1>Interfaces management</h1>
     <div class="linux-navigation">
-        <a href="{{ path( 'module', {"key":app.request.get('key'), "module":"interfaces"} ) }}" class="linux-navigation-link">
+        <a href="{{ path( 'module', {"key":app.request.get('key'), "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_INTERFACES_NAME")} ) }}" class="linux-navigation-link">
             Interfaces
         </a>
         >>
-        <a href="{{ path( 'interface_management', {"key":app.request.get('key'), "module":"interfaces"} ) }}" class="linux-navigation-link">
+        <a href="{{ path( 'interface_management', {"key":app.request.get('key')} ) }}" class="linux-navigation-link">
             Interfaces management
         </a>
     </div>
 
     <div class="linux-submenu">
-        <a href="{{ path( 'interface_management', {"key":app.request.get('key'), "module":"interfaces",} ) }}" class="linux-submenu-link-active linux-submenu-link">
+        <a href="{{ path( 'interface_management', {"key":app.request.get('key')} ) }}" class="linux-submenu-link-active linux-submenu-link">
             Interfaces
         </a>
     </div>
@@ -26,20 +26,20 @@
     <hr class="cleaner" />
     <table id="subsection-content">
         <tr>
-            <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'authentication', {"key":app.request.get('key'), "module":"system", "subsection":"radius"} ) }}">
+            <td id="previous-subsection" class="arrow-navigation" data-path="{{ path( 'interface_management', {"key":app.request.get('key')} ) }}">
                 <div class="arrow-navigation-text">Previous</div>
                 <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-                <div class="arrow-navigation-text">Radius</div>
+                <div class="arrow-navigation-text">Interfaces management</div>
             </td>
             <td id="linux-body-content-interface" class="content">
                 {% if formConfigInterfaces is defined %}
                     {% include 'FITModuleLinuxBundle:InterfaceManagement:interfaceDetail.html.twig' with {'formConfigInterfaces': formConfigInterfaces} %}
                 {% endif %}
             </td>
-            <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'system_identification', {"key":app.request.get('key'), "module":"system"} ) }}">
+            <td id="next-subsection" class="arrow-navigation" data-path="{{ path( 'interface_management', {"key":app.request.get('key')} ) }}">
                 <div class="arrow-navigation-text">Next</div>
                 <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
-                <div class="arrow-navigation-text">System identification</div>
+                <div class="arrow-navigation-text">Interfaces management</div>
             </td>
 
         </tr>
@@ -50,5 +50,5 @@
 {% block linuxBodyButtons %}
 
     <button class="btn btn-success save-subsection interfaces-management">Save</button>
-    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key":app.request.get('key'), "module": "interfaces"}) }}">Back</button>
+    <button class="btn btn-primary back-to-system-section" data-path="{{ path('module', {"key": app.request.get('key'), "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_INTERFACES_NAME")}) }}">Back</button>
 {% endblock linuxBodyButtons %}

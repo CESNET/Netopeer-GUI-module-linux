@@ -37,6 +37,7 @@
  */
 namespace FIT\Bundle\ModuleLinuxBundle\Controller;
 
+use FIT\Bundle\ModuleLinuxBundle\LinuxSectionNames;
 use FIT\NetopeerBundle\Controller\ModuleControllerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -65,6 +66,44 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 		} else {
 			return $this->getTwigArr();
         }
+	}
+
+	/**
+	 * @Route("/sections/{key}/system/", name="module_system", requirements={"key" = "\d+"})
+	 * @Template("FITModuleLinuxBundle:Module:section.html.twig")
+	 *
+	 * @param int $key
+	 * 
+	 * @return array|null|\SimpleXMLIterator|RedirectResponse|Response
+	 */
+	public function moduleSystemAction($key)
+	{
+		$res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, LinuxSectionNames::MODULE_SYSTEM_NAME, null);
+
+		if ($res instanceof RedirectResponse) {
+			return $res;
+		} else {
+			return $this->getTwigArr();
+		}
+	}
+
+	/**
+	 * @Route("/sections/{key}/interfaces/", name="module_interfaces", requirements={"key" = "\d+"})
+	 * @Template("FITModuleLinuxBundle:Module:section.html.twig")
+	 *
+	 * @param int $key
+	 *
+	 * @return array|null|\SimpleXMLIterator|RedirectResponse|Response
+	 */
+	public function moduleInterfacesAction($key)
+	{
+		$res = $this->prepareDataForModuleAction("FITModuleLinuxBundle", $key, LinuxSectionNames::MODULE_INTERFACES_NAME, null);
+
+		if ($res instanceof RedirectResponse) {
+			return $res;
+		} else {
+			return $this->getTwigArr();
+		}
 	}
 
 	/**
@@ -117,6 +156,7 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 		$session = $this->get('session');
 		if (($systemFeatures = $session->get('features')) == null) {
 			$info = $dataClass->handle("info", array('key' => $key), false);
+		//	@file_put_contents($this->container->get('kernel')->getRootDir() . '/logs/tmp-files/featuresInfo.txt', print_r($info, true));
 			$systemString = "ietf-system";
 			$systemInfo = array_filter($info['capabilities'], function($var) use ($systemString) { return preg_match("/\b$systemString\b/i", $var); });
 			$systemInfo = array_shift(array_values($systemInfo));
@@ -129,6 +169,35 @@ class ModuleController extends \FIT\NetopeerBundle\Controller\ModuleController i
 			$systemFeatures = explode(',', $systemFeatures);
 			$session->set('features', $systemFeatures);
 		}
+
+		return $systemFeatures;
+	}
+
+	/**
+	 * @param int $key
+	 * @return array
+	 */
+	protected function getIanaCryptHashFeatures($key)
+	{
+		/**
+		 * @var \FIT\NetopeerBundle\Models\Data $dataClass
+		 */
+		$dataClass = $this->get('DataModel');
+
+
+			$info = $dataClass->handle("info", array('key' => $key), false);
+			$systemString = "iana-crypt-hash";
+			$systemInfo = array_filter($info['capabilities'], function($var) use ($systemString) { return preg_match("/\b$systemString\b/i", $var); });
+			$systemInfo = array_shift(array_values($systemInfo));
+
+			$featureString = "features";
+			$systemFeatures = explode('&', $systemInfo);
+			$systemFeatures = array_filter($systemFeatures, function($var) use ($featureString) { return preg_match("/\b$featureString\b/i", $var); });
+			$systemFeatures = array_shift(array_values($systemFeatures));
+			$systemFeatures = explode('=', $systemFeatures)[1];
+			$systemFeatures = explode(',', $systemFeatures);
+
+
 
 		return $systemFeatures;
 	}

@@ -2,6 +2,7 @@
 
 namespace FIT\Bundle\ModuleLinuxBundle\Controller;
 
+use FIT\Bundle\ModuleLinuxBundle\LinuxSectionNames;
 use FIT\Bundle\ModuleLinuxBundle\Models\FormBuilders\AuthenticationType;
 use FIT\Bundle\ModuleLinuxBundle\Models\FormBuilders\AuthenticationUserType;
 use FIT\Bundle\ModuleLinuxBundle\Models\FormBuilders\RadiusServerType;
@@ -31,14 +32,14 @@ class AuthenticationController extends \FIT\Bundle\ModuleLinuxBundle\Controller\
 	 *
 	 * @return array|null|\SimpleXMLIterator|RedirectResponse|Response
 	 */
-	public function authenticationAction($key, $module = "system", $subsection = "authentication") 
+	public function authenticationAction($key, $module = LinuxSectionNames::MODULE_SYSTEM_NAME, $subsection = LinuxSectionNames::SUBSECTION_AUTHENTICATION_NAME) 
 	{
 		if ($this->getRequest()->getMethod() == 'POST') {
 			$res = false;
-			if ($subsection == "authentication") {
+			if ($subsection == LinuxSectionNames::SUBSECTION_AUTHENTICATION_NAME) {
 				$res = $this->handleAuthenticationForm($key, $module, $subsection);
 			}
-			else if ($subsection == "radius") {
+			else if ($subsection == LinuxSectionNames::SUBSECTION_RADIUS_NAME) {
 				$res = $this->handleRadiusForm($key, $module, $subsection);
 			}
 			if ($res !== true) {
@@ -48,24 +49,28 @@ class AuthenticationController extends \FIT\Bundle\ModuleLinuxBundle\Controller\
 
 		$twigArr = $this->getLinuxBundleTwigArr($key, $module, $subsection);
 
-		if (array_key_exists('stateArr', $twigArr) && $subsection == "authentication") {
+		if (array_key_exists('stateArr', $twigArr) && $subsection == LinuxSectionNames::SUBSECTION_AUTHENTICATION_NAME) {
 			$features = $this->getFeatures($key);
+		//	$features2 = $this->getIanaCryptHashFeatures($key);
+		//	@file_put_contents($this->container->get('kernel')->getRootDir() . '/logs/tmp-files/features2.txt', print_r($features2, true));
+		//	@file_put_contents($this->container->get('kernel')->getRootDir() . '/logs/tmp-files/features.txt', print_r($features, true));
+
 			$twigArr['featureAuthentication'] = (array_search('authentication', $features) !== false);
 			$twigArr['featureLocalUsers'] = (array_search('local-users', $features) !== false);
 
-			if (isset($twigArr['stateArr']->authentication)) {
-				$form = $this->createForm(new AuthenticationType(), Authentication::createFromXml($twigArr['stateArr']->authentication), array('features' => $features));
+			if (isset($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_AUTHENTICATION_NAME})) {
+				$form = $this->createForm(new AuthenticationType(), Authentication::createFromXml($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_AUTHENTICATION_NAME}), array('features' => $features));
 			} else {
 				$form = $this->createForm(new AuthenticationType(), new Authentication(), array('features' => $features));
 			}
 			$twigArr['formConfigAuthentication'] = $form->createView();
 		}
-		else if (array_key_exists('stateArr', $twigArr) && $subsection == "radius") {
+		else if (array_key_exists('stateArr', $twigArr) && $subsection == LinuxSectionNames::SUBSECTION_RADIUS_NAME) {
 			$features = $this->getFeatures($key);
 			$twigArr['featureRadius'] = (array_search('radius', $features) !== false);
 
-			if (isset($twigArr['stateArr']->radius)) {
-				$form = $this->createForm(new RadiusType(), Radius::createFromXml($twigArr['stateArr']->radius));
+			if (isset($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_RADIUS_NAME})) {
+				$form = $this->createForm(new RadiusType(), Radius::createFromXml($twigArr['stateArr']->{LinuxSectionNames::SUBSECTION_RADIUS_NAME}));
 			} else {
 				$form = $this->createForm(new RadiusType(), new Radius());
 			}
