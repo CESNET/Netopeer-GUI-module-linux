@@ -77,6 +77,11 @@ $(document).ready(function () {
             });
         });
     });
+
+    $("body").on("click", ".change-password-button", function() {
+        $(".change-password-form").show();
+    });
+    
 });
 
 

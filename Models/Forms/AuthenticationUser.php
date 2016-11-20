@@ -15,6 +15,10 @@ class AuthenticationUser
 
     protected $password;
 
+    protected $oldPassword;
+
+    protected $newPassword;
+
     protected $authorizedKey;
     
     public function getName()
@@ -28,13 +32,33 @@ class AuthenticationUser
     }
     
     public function getPassword()
-    {
-        return $this->password;
-    }
-    
+{
+    return $this->password;
+}
+
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    public function getOldPassword()
+    {
+        return $this->oldPassword;
+    }
+
+    public function setOldPassword($oldPassword)
+    {
+        $this->oldPassword = $oldPassword;
+    }
+
+    public function getNewPassword()
+    {
+        return $this->newPassword;
+    }
+
+    public function setNewPassword($newPassword)
+    {
+        $this->newPassword = $newPassword;
     }
     
     public function getAuthorizedKey()

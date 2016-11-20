@@ -2,7 +2,16 @@
 {% for user in formConfigAuthentication.user %}
     <div class="user-subform {{ 'user-' ~ user.vars.value.name}}">
         {{ form_row(user.name) }}
-        {{ form_row(user.password) }}
+
+
+            {{ form_row(user.password) }}
+
+
+        <button type="button" class="change-password-button">change password</button>
+        <div class="change-password-form" style="display: none">
+            {{ form_row(user.oldPassword) }}
+            {{ form_row(user.newPassword) }}
+        </div>
 
         {# TODO: #}
         {# <div class="subform-list authorized-key">

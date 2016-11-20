@@ -23,8 +23,18 @@ class AuthenticationUserType extends AbstractType
                     'error_bubbling' => true,
                     'read_only' => true,
                 ))
-                ->add('password', 'text', array(
+                ->add('password', 'hidden', array(
                     'label' => "Password",
+                    'required' => false,
+                    'error_bubbling' => true,
+                ))
+                ->add('oldPassword', 'text', array(
+                    'label' => "Old password",
+                    'required' => false,
+                    'error_bubbling' => true,
+                ))
+                ->add('newPassword', 'text', array(
+                    'label' => "New password",
                     'required' => false,
                     'error_bubbling' => true,
                 ))

@@ -16,6 +16,7 @@ use FIT\NetopeerBundle\Controller\ModuleControllerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -160,6 +161,14 @@ class AuthenticationController extends \FIT\Bundle\ModuleLinuxBundle\Controller\
 		$form = $this->createForm(new AuthenticationType(), $authentication);
 		$form->handleRequest($request);
 
+		foreach ($authentication->getUser() as $user) {
+			if ($user->getOldPassword() != "" || $user->getNewPassword() != "") {
+				if ($user->getPassword() != "" && !$this->checkPassword($user->getPassword(), $user->getOldPassword())) {
+					$form->addError(new FormError("wrong password for ".$user->getName()));
+				}
+			}
+		}
+
 		if (!$form->isValid()) {
 			$twigArr = $this->getLinuxBundleTwigArr($key, $module, $subsection);
 
@@ -171,6 +180,15 @@ class AuthenticationController extends \FIT\Bundle\ModuleLinuxBundle\Controller\
 			return $twigArr;
 		}
 		else {
+			foreach ($authentication->getUser() as $user) {
+				if ($user->getOldPassword() != "" || $user->getNewPassword() != "") {
+					$hash = substr($user->getPassword(), 0, strrpos($user->getPassword(), "$"));
+					$user->setPassword(crypt($user->getNewPassword(), $hash));
+					$user->setNewPassword("");
+					$user->setOldPassword("");
+				}
+			}
+
 			$this->saveValidData($key, $module, $subsection, $form);
 			return true;
 		}
@@ -201,5 +219,15 @@ class AuthenticationController extends \FIT\Bundle\ModuleLinuxBundle\Controller\
 			$this->saveValidData($key, $module, $subsection, $form);
 			return true;
 		}
+	}
+
+	/**
+	 * @param string $hashedPassword
+	 * @param string $password
+	 * @return bool
+	 */
+	private function checkPassword($hashedPassword, $password) {
+		$hash = substr($hashedPassword, 0, strrpos($hashedPassword, "$"));
+		return (crypt($password, $hash) == $hashedPassword);
 	}
 }
