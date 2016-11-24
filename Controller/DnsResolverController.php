@@ -53,6 +53,7 @@ class DnsResolverController extends ModuleController
 
     /**
      * @Route("/ajax/{key}/dns/server/modal", name="get_dns_server_modal_form")
+     * @param int $key
      * @return Response
      */
     public function getServerDnsModalFormAjaxAction($key)
@@ -73,16 +74,22 @@ class DnsResolverController extends ModuleController
     }
 
     /**
-     * @Route("/ajax/dns/server/", name="get_dns_server_form")
+     * @Route("/ajax/{key}/dns/server/get", name="get_dns_server_form")
+     * @param int $key
      * @return Response
      */
-    public function getServerDnsFormAjaxAction()
+    public function getServerDnsFormAjaxAction($key)
     {
         $request = $this->getRequest();
         $dns = new DnsResolver();
-        $form = $this->createForm(new DnsResolverType(), $dns);
+        $form = $this->createForm(new DnsResolverType(), $dns, array('features' => $this->getFeatures($key)));
         $form->handleRequest($request);
-        return $this->render('FITModuleLinuxBundle:DnsResolver:dnsServerForm.html.twig', array( "formConfigDnsResolver" => $form->createView()) );
+        if ($form->isValid()) {
+            return $this->render('FITModuleLinuxBundle:DnsResolver:dnsServerForm.html.twig', array("formConfigDnsResolver" => $form->createView()));
+        }
+        else {
+            return $this->render('FITModuleLinuxBundle:DnsResolver:dnsServerModal.html.twig', array( "formConfigDnsResolver" => $form->createView()));
+        }
     }
 
     /**

@@ -52,9 +52,6 @@ class AuthenticationController extends \FIT\Bundle\ModuleLinuxBundle\Controller\
 
 		if (array_key_exists('stateArr', $twigArr) && $subsection == LinuxSectionNames::SUBSECTION_AUTHENTICATION_NAME) {
 			$features = $this->getFeatures($key);
-		//	$features2 = $this->getIanaCryptHashFeatures($key);
-		//	@file_put_contents($this->container->get('kernel')->getRootDir() . '/logs/tmp-files/features2.txt', print_r($features2, true));
-		//	@file_put_contents($this->container->get('kernel')->getRootDir() . '/logs/tmp-files/features.txt', print_r($features, true));
 
 			$twigArr['featureAuthentication'] = (array_search('authentication', $features) !== false);
 			$twigArr['featureLocalUsers'] = (array_search('local-users', $features) !== false);
@@ -82,10 +79,11 @@ class AuthenticationController extends \FIT\Bundle\ModuleLinuxBundle\Controller\
     }
 
 	/**
-	 * @Route("/ajax/authentication/user/modal", name="get_user_modal_form")
+	 * @Route("/ajax/{key}/authentication/user/modal", name="get_user_modal_form")
+	 * @param int $key
 	 * @return Response
 	 */
-	public function getUserModalFormAjaxAction()
+	public function getUserModalFormAjaxAction($key)
 	{
 		if (($userNumber = $this->getRequest()->get('userNumber')) != null) {
 			$authentication = new Authentication();
@@ -103,23 +101,39 @@ class AuthenticationController extends \FIT\Bundle\ModuleLinuxBundle\Controller\
 	}
 
 	/**
-	 * @Route("/ajax/authentication/user/", name="get_user_form")
+	 * @Route("/ajax/{key}/authentication/user/get", name="get_user_form")
+	 * @param int $key
 	 * @return Response
 	 */
-	public function getUserFormAjaxAction()
+	public function getUserFormAjaxAction($key)
 	{
 		$request = $this->getRequest();
 		$authentication = new Authentication();
 		$form = $this->createForm(new AuthenticationType(), $authentication);
 		$form->handleRequest($request);
-		return $this->render('FITModuleLinuxBundle:Authentication:authenticationUserForm.html.twig', array( "formConfigAuthentication" => $form->createView()) );
+
+		foreach ($authentication->getUser() as $user) {
+			if ($user->getOldPassword() != "" || $user->getNewPassword() != "") {
+				if ($user->getPassword() != "" && !$this->checkPassword($user->getPassword(), $user->getOldPassword())) {
+					$form->addError(new FormError("wrong password for ".$user->getName()));
+				}
+			}
+		}
+
+		if ($form->isValid()) {
+			return $this->render('FITModuleLinuxBundle:Authentication:authenticationUserForm.html.twig', array("formConfigAuthentication" => $form->createView()));
+		}
+		else {
+			return $this->render('FITModuleLinuxBundle:Authentication:authenticationUserModal.html.twig', array( "formConfigAuthentication" => $form->createView()));
+		}
 	}
 
 	/**
-	 * @Route("/ajax/radius/server/modal", name="get_radius_server_modal_form")
+	 * @Route("/ajax/{key}/radius/server/modal", name="get_radius_server_modal_form")
+	 * @param int $key
 	 * @return Response
 	 */
-	public function getServerRadiusModalFormAjaxAction()
+	public function getServerRadiusModalFormAjaxAction($key)
 	{
 		if (($serverNumber = $this->getRequest()->get('serverNumber')) != null) {
 			$radius = new Radius();
@@ -137,10 +151,11 @@ class AuthenticationController extends \FIT\Bundle\ModuleLinuxBundle\Controller\
 	}
 
 	/**
-	 * @Route("/ajax/radius/server/", name="get_radius_server_form")
+	 * @Route("/ajax/{key}/radius/server/", name="get_radius_server_form")
+	 * @param int $key
 	 * @return Response
 	 */
-	public function getServerRadiusFormAjaxAction()
+	public function getServerRadiusFormAjaxAction($key)
 	{
 		$request = $this->getRequest();
 		$radius = new Radius();

@@ -10,7 +10,12 @@
 {% block linuxModalBody %}
     {% if formConfigRadius is defined and formConfigRadius is not null %}
         {% form_theme formConfigRadius 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
-        {{ form_start(formConfigRadius, {'action': path('get_radius_server_form'), 'attr': {'data-path-remove': path('remove_item_form', {"key":"0", "module":"system", "subsection":"radius"})}}) }}
+        {{ form_start(formConfigRadius, {
+            'action': path('get_radius_server_form', {"key": app.request.get('key')}),
+            'attr': {'data-path-remove': path('remove_item_form', {
+                "key": app.request.get('key'),
+                "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_SYSTEM_NAME"),
+                "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_RADIUS_NAME")})}}) }}
         <div class="form-errors">
             {{ form_errors(formConfigRadius) }}
         </div>

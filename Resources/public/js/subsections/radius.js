@@ -16,7 +16,6 @@ $(document).ready(function () {
         var path = $(this).attr("data-path");
         var serverNumber = $form.find("div.server-subform").length + 1;
         var data = {serverNumber: serverNumber};
-        //data = data.concat(({name: 'serverNumber', value: 5}).serializeArray());
 
         var newServerFormDivClass = 'server-subform server-server-' + serverNumber;
 

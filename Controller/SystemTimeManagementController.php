@@ -74,7 +74,7 @@ class SystemTimeManagementController extends ModuleController
 
     /**
      * @Route("/ajax/{key}/ntp/server/modal", name="get_server_modal_form")
-     * @param string $key
+     * @param int $key
      * @return Response
      */
     public function getServerModalFormAjaxAction($key)
@@ -94,16 +94,22 @@ class SystemTimeManagementController extends ModuleController
     }
         
     /**
-     * @Route("/ajax/ntp/server/get", name="get_server_form")
+     * @Route("/ajax/{key}/ntp/server/get", name="get_server_form")
+     * @param int $key
      * @return Response
      */
-    public function getServerFormAjaxAction()
+    public function getServerFormAjaxAction($key)
     {
         $request = $this->getRequest();
-        $clock = new Ntp();
-        $form = $this->createForm(new NtpType(), $clock);
+        $ntp = new Ntp();
+        $form = $this->createForm(new NtpType(), $ntp, array('features' => $this->getFeatures($key)));
         $form->handleRequest($request);
-        return $this->render('FITModuleLinuxBundle:SystemTimeManagement:ntpServerForm.html.twig', array( "formConfigNtp" => $form->createView()) );
+        if ($form->isValid()) {
+            return $this->render('FITModuleLinuxBundle:SystemTimeManagement:ntpServerForm.html.twig', array("formConfigNtp" => $form->createView()));
+        }
+        else {
+            return $this->render('FITModuleLinuxBundle:SystemTimeManagement:ntpServerModal.html.twig', array( "formConfigNtp" => $form->createView()));
+        }
     }
 
     /**

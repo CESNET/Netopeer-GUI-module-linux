@@ -10,7 +10,12 @@
 {% block linuxModalBody %}
     {% if formConfigAuthentication is defined and formConfigAuthentication is not null %}
         {% form_theme formConfigAuthentication 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
-        {{ form_start(formConfigAuthentication, {'action': path('get_user_form'), 'attr': {'data-path-remove': path('remove_item_form', {"key":"0", "module":"system", "subsection":"authentication"})}}) }}
+        {{ form_start(formConfigAuthentication, {
+            'action': path('get_user_form', {"key": app.request.get('key')}),
+            'attr': {'data-path-remove': path('remove_item_form', {
+                "key": app.request.get('key'),
+                "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_SYSTEM_NAME"),
+                "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_AUTHENTICATION_NAME")})}}) }}
         <div class="form-errors">
             {{ form_errors(formConfigAuthentication) }}
         </div>

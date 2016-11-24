@@ -12,23 +12,6 @@ $(document).ready(function () {
         var userXpath = $form.find("input[name*=userXpath]").first().val();
 
         createModalEditItemForm($form, $icon, path, userXpath);
-        /*
-        $.post(path, data, function (result) {
-            var $modal = $(result);
-            $modal.modal();
-
-            $(".modal .modal-content").on("click", "button.submit", function (e) {
-                e.preventDefault();
-                var $modalForm = $(".modal .modal-content").find("form").first();
-                var modalData = [];
-                modalData = modalData.concat($modalForm.find(":input").serializeArray());
-
-                $.post($modalForm.attr("action"), modalData, function (modalResult) {
-                    $modal.modal("hide");
-                    $form.html(modalResult);
-                });
-            });
-        });*/
     });
 
     $(".user.new-user").click(function () {
@@ -36,10 +19,6 @@ $(document).ready(function () {
         var path = $(this).attr("data-path");
         var userNumber = $form.find("div.user-subform").length + 1;
         var data = {userNumber: userNumber};
-        //data = data.concat(({name: 'serverNumber', value: 5}).serializeArray());
-
-      //  var userName = $(this).attr("class").replace("user existing-user", "");
-      //  userName = userName.replace("link-active", "");
 
         var $newUserImgDiv = $("#linux-body-content-authentication").find(".users .user.new-user").first();
 
@@ -64,14 +43,20 @@ $(document).ready(function () {
                 modalData = modalData.concat($modalForm.find(":input").serializeArray());
 
                 $.post($modalForm.attr("action"), modalData, function (modalResult) {
-                    $modal.modal("hide");
+                    if ($(modalResult).find("form").length > 0) {
+                        $modal.find("form").html($(modalResult).find("form").html());
+                        $modal.find("input[name*=name]").first().attr("readonly", false);
+                        $modal.find("input[name*=name]").first().closest(".input-group").removeClass("readonly");
+                    } else {
+                        $modal.modal("hide");
 
-                    $newUserImgDiv.before(createdExistingUserImgDiv);
-                    if ($form.find("div.user-subform").length > 0) {
-                        $form.find("div.user-subform").last().after("<div class='" + newUserFormDivClass + "'>" + modalResult + "</div>");
-                    }
-                    else {
-                        $form.find("input").last().after("<div class='hidden-form'><div class='" + newUserFormDivClass + "'>" + modalResult + "</div></div>");
+                        $newUserImgDiv.before(createdExistingUserImgDiv);
+                        if ($form.find("div.user-subform").length > 0) {
+                            $form.find("div.user-subform").last().after("<div class='" + newUserFormDivClass + "'>" + modalResult + "</div>");
+                        }
+                        else {
+                            $form.find("input").last().after("<div class='hidden-form'><div class='" + newUserFormDivClass + "'>" + modalResult + "</div></div>");
+                        }
                     }
                 });
             });

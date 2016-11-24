@@ -10,7 +10,12 @@
 {% block linuxModalBody %}
     {% if formConfigNtp is defined and formConfigNtp is not null %}
         {% form_theme formConfigNtp 'FITModuleLinuxBundle:Form:linuxFormTheme.html.twig' %}
-        {{ form_start(formConfigNtp, {'action': path('get_server_form'), 'attr': {'data-path-remove': path('remove_item_form', {"key":"0", "module":"system", "subsection":"ntp"})}}) }}
+        {{ form_start(formConfigNtp, {
+            'action': path('get_server_form', {"key": app.request.get('key')}),
+            'attr': {'data-path-remove': path('remove_item_form', {
+                "key": app.request.get('key'),
+                "module": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::MODULE_SYSTEM_NAME"),
+                "subsection": constant("FIT\\Bundle\\ModuleLinuxBundle\\LinuxSectionNames::SUBSECTION_NTP_NAME")})}}) }}
         <div class="form-errors">
             {{ form_errors(formConfigNtp) }}
         </div>
